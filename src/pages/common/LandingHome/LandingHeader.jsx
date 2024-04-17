@@ -3,10 +3,11 @@ import { VscDeviceCameraVideo } from "react-icons/vsc";
 import PlaceHolderImg from '../../../assets/image/placeholder-image.webp';
 import { CiImageOn, CiFileOn  } from "react-icons/ci";
 import { IoLinkOutline } from "react-icons/io5";
-
-
+import { useNavigate } from 'react-router-dom';
 
 const LandingHeader = () => {
+    const navigate = useNavigate()
+
   return (
     <div className='w-full container mx-auto  lg:flex lg:flex-row md:flex md:flex-col sm:flex sm:flex-col  justify-center  p-2 md:p-7 pt-0 md:pt-24'>
             <div className='w-4/5 md:w-2/6 lg:w-3/12 mx-auto lg:mx-0'>
@@ -15,28 +16,28 @@ const LandingHeader = () => {
                 <div className='bg-black py-4 mt-7 rounded-lg'>
                     <div className='flex flex-row items-center justify-center'>
                         <div>
-                            <div className='h-[40px] w-[40px]  bg-[#1199EE] flex flex-row justify-center items-center rounded mx-4'>
+                            <div className='h-[40px] w-[40px]  flex flex-row justify-center items-center rounded mx-4 landing_page_iconBox'>
                                 <VscDeviceCameraVideo size={30} color='white'/>
                             </div>
                             <p className='text-white text-xs text-center mt-2 font-medium'>Discover</p>
                         </div>
 
                         <div>
-                            <div className='h-[40px] w-[40px]  bg-[#1199EE] flex flex-row justify-center items-center rounded '>
+                            <div className='h-[40px] w-[40px]   flex flex-row justify-center items-center rounded landing_page_iconBox'>
                                 <CiImageOn size={30} color='white'/>
                             </div>
                             <p className='text-white text-xs text-center mt-2 font-medium'>Engage</p>
                         </div>
 
                         <div>
-                            <div className='h-[40px] w-[40px]  bg-[#1199EE] flex flex-row justify-center items-center rounded mx-4'>
+                            <div className='h-[40px] w-[40px]   flex flex-row justify-center items-center rounded mx-4 landing_page_iconBox'>
                                 <CiFileOn size={30} color='white'/>
                             </div>
                             <p className='text-white text-xs text-center mt-2 font-medium'>Acquire</p>
                         </div>
 
                         <div>
-                            <div className='h-[40px] w-[40px]  bg-[#1199EE] flex flex-row justify-center items-center rounded'>
+                            <div className='h-[40px] w-[40px]   flex flex-row justify-center items-center rounded landing_page_iconBox'>
                                 <IoLinkOutline  size={30} color='white'/>
                             </div>
                             <p className='text-white text-xs text-center mt-2 font-medium'>Retain</p>
@@ -45,8 +46,8 @@ const LandingHeader = () => {
                     </div>
 
                     <div className='flex flex-row justify-center mt-4 '>
-                        <button className='font-medium bg-white px-5 py-2 mx-2 rounded'>Login</button>
-                        <button className='font-medium bg-white px-5 py-2 mx-2 rounded'>Sign Up</button>
+                        <button onClick={() => navigate('/login')} className='font-bold bg-white px-5 py-2 mx-2 rounded'>Login</button>
+                        <button className='font-bold bg-white px-5 py-2 mx-2 rounded'>Sign Up</button>
                     </div>
                 </div>
 
