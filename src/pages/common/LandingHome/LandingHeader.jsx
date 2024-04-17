@@ -8,7 +8,7 @@ import { IoLinkOutline } from "react-icons/io5";
 
 const LandingHeader = () => {
   return (
-    <div className='w-full container mx-auto  lg:flex lg:flex-row md:flex md:flex-col sm:flex sm:flex-col  justify-center  p-2 md:p-7 pt-0 md:pt-20'>
+    <div className='w-full container mx-auto  lg:flex lg:flex-row md:flex md:flex-col sm:flex sm:flex-col  justify-center  p-2 md:p-7 pt-0 md:pt-24'>
             <div className='w-4/5 md:w-2/6 lg:w-3/12 mx-auto lg:mx-0'>
                 <h4 className='text-white font-medium text-xl italic mt-11'>Your brand, our innovation-a perfect match in the digital revolation!</h4>
 

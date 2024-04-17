@@ -22,7 +22,7 @@ const LandingNavBar = () =>  {
                 </Disclosure.Button>
               </div>
 
-              <div className="w-full flex flex-row items-center justify-end mt-0 md:mt-7">
+              <div className="w-full flex flex-row items-center justify-end mt-0 md:mt-20">
                 
                 <div className='px-4 me-0 md:me-40'>
                   <h4 className='text-white font-bold text-5xl italic'>PixPlay</h4>
@@ -33,7 +33,7 @@ const LandingNavBar = () =>  {
                       <button className='outline-none px-6 py-2 font-medium'>Solution</button>
                       <button className='outline-none px-6 py-2 font-medium'>Product</button>
                       <button className='outline-none px-6 py-2 font-medium'>Blog</button>
-                      <button className='outline-none px-6 py-2 bg-[#1199EE] text-white font-medium rounded'>Dashboard</button>
+                      <button className='outline-none px-6 py-4 bg-[#1199EE] text-white font-medium rounded'>Dashboard</button>
 
                   </div>
                 </div>
