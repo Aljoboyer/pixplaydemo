@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Home from "./pages/common/Home";
+import LandingHome from './pages/common/LandingHome/LandingHome';
+import './App.css'
 
 function App() {
 
@@ -7,7 +8,7 @@ function App() {
     <main className="w-full">
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LandingHome />} />
         </Routes>
       </Router>
     </main>
