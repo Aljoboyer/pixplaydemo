@@ -23,7 +23,7 @@ const Login = () => {
                           <input className='outline-none border-0 rounded ms-7 p-2' placeholder='Email'/>
                           <input type='password' className='outline-none border-0 rounded ms-[78px] lg:ms-17 xl:ms-4 p-2 mt-4 lg:mt-4 xl:mt-0' placeholder='Password'/>
                       </div>
-                      
+                       
                      <div className='flex flex-row justify-center my-4   xl:w-[500px]  xl:ms-11'>
                         <p className='text-white font-medium  w-[35px]'>OR</p>
                      </div>
