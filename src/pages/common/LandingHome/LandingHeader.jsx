@@ -10,7 +10,7 @@ const LandingHeader = () => {
 
   return (
     <div className='w-full container mx-auto  lg:flex lg:flex-row md:flex md:flex-col sm:flex sm:flex-col  justify-center  p-2 md:p-7 pt-0 md:pt-24'>
-            <div className='w-4/5 md:w-2/6 lg:w-3/12 mx-auto lg:mx-0'>
+            <div className='w-4/5 md:w-3/5 lg:w-3/12 mx-auto lg:mx-0'>
                 <h4 className='text-white font-medium text-xl italic mt-11'>Your brand, our innovation-a perfect match in the digital revolation!</h4>
 
                 <div className='bg-black py-4 mt-7 rounded-lg'>
@@ -47,7 +47,7 @@ const LandingHeader = () => {
 
                     <div className='flex flex-row justify-center mt-4 '>
                         <button onClick={() => navigate('/login')} className='font-bold bg-white px-5 py-2 mx-2 rounded'>Login</button>
-                        <button className='font-bold bg-white px-5 py-2 mx-2 rounded'>Sign Up</button>
+                        <button onClick={() => navigate('/sign-up')} className='font-bold bg-white px-5 py-2 mx-2 rounded'>Sign Up</button>
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@ const LandingHeader = () => {
 
             </div>
 
-            <div className='w-4/5 md:w-3/5 flex flex-col items-center justify-center mx-auto lg:mx-0 mt-4 lg:mt-0'>
+            <div className='w-4/5 lg:w-3/5 flex flex-col items-center justify-center mx-auto lg:mx-0 mt-4 lg:mt-0'>
                 <img className='w-fit md:w-3/4 ' src={PlaceHolderImg} alt="" />
 
                <div className='w-fit md:w-3/4'>

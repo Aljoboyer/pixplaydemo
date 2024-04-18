@@ -30,10 +30,10 @@ const LandingNavBar = () =>  {
                 
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex flex-row justify-evenly px-2  bg-white py-2 rounded">
-                      <button className='outline-none px-6 py-2 font-medium'>Solution</button>
-                      <button className='outline-none px-6 py-2 font-medium'>Product</button>
-                      <button className='outline-none px-6 py-2 font-medium'>Blog</button>
-                      <button className='outline-none px-6 py-4 bg-[#1199EE] text-white font-medium rounded'>Dashboard</button>
+                      <button className='outline-none px-6  font-bold'>Solution</button>
+                      <button className='outline-none px-6  font-bold'>Product</button>
+                      <button className='outline-none px-6  font-bold'>Blog</button>
+                      <button className='outline-none px-6 py-2 bg-[#1199EE] text-white font-bold rounded'>Dashboard</button>
 
                   </div>
                 </div>
