@@ -3,6 +3,7 @@ import LandingHome from './pages/common/LandingHome/LandingHome';
 import './App.css'
 import Login from './pages/common/Auth/Login/Login';
 import SignUp from './pages/common/Auth/SignUp/SignUp';
+import AdminHome from './pages/admin/AdminHome/AdminHome';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<LandingHome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
+          
         </Routes>
       </Router>
     </main>
