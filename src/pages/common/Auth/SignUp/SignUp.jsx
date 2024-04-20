@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PlaceHolderImg from '../../../../assets/image/placeholder-image.webp';
 import { useNavigate } from 'react-router-dom';
+import { nameRegex } from '../../../../helper/regexData';
 
 const SignUp = () => {
     const navigate = useNavigate()
+    const [signUpData, setSignUpData] = useState({
+        firstName: '', lastName: '',
+        email: '', phone: '',
+    })
+    const [signUpErr, setSignUpErr] = useState({
+        nameErr: '',
+        emailErr: '', phoneErr: '',
+    })
+    
+   const validatehandler = () => {
+    if (nameRegex.test(signUpData?.firstName) === false || nameRegex.test(signUpData?.lastName) === false  || text.trim().length === 0) {
+        setSignUpErr({...signUpErr, nameErr: 'Please write proper name without special character and number'})
+        isValid = false
+    }
+   }
 
   return (
     <div className='w-full h-fit xl:h-screen landing_home_main_container lg:flex lg:flex-row md:flex md:flex-col sm:flex sm:flex-col '>
@@ -21,8 +37,25 @@ const SignUp = () => {
 
                       <div className='mt-4'>
                           <label className='text-white font-medium' htmlFor="email">Name *</label>
-                          <input className='outline-none border-0 rounded ms-7 p-2' placeholder='First Name'/>
-                          <input className='outline-none border-0 rounded ms-[78px] lg:ms-17 xl:ms-4 p-2 mt-4 xl:mt-0' placeholder='Last Name'/>
+                          <input 
+                          onChange={(e) => {
+                            setSignUpData({...signUpData, firstName: e.target.value})
+                            setSignUpErr({...signUpErr, nameErr: ''})
+                          }}
+                          className='outline-none border-0 rounded ms-7 p-2' placeholder='First Name'/>
+                          <input
+                           onChange={(e) => {
+                            setSignUpData({...signUpData, lastName: e.target.value})
+                            setSignUpErr({...signUpErr, nameErr: ''})
+                          }}
+                          className='outline-none border-0 rounded ms-[78px] lg:ms-17 xl:ms-4 p-2 mt-4 xl:mt-0' placeholder='Last Name'/>
+
+                          {
+                        signUpErr?.nameErr && <div className=' mt-4 ms-14'>
+                       <p className='text-sm font-bold text-red-500 ms-7  text-start'>{signUpErr?.nameErr}</p>
+                       </div> 
+                       }
+
                       </div>
                      
                       <div className='my-7 w-full'>
@@ -41,7 +74,7 @@ const SignUp = () => {
                           <label className='text-gray-400 ms-4' htmlFor="email">Terms</label>
                       </div>
 
-                      <button className='font-bold bg-white px-5 py-2 ms-20 rounded mt-7 '>Sign Up</button>
+                      <button onClick={validatehandler} className='font-bold bg-white px-5 py-2 ms-20 rounded mt-7 '>Sign Up</button>
                 </div>
 
             </div>
