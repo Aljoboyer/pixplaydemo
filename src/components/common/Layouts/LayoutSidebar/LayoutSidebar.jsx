@@ -74,10 +74,10 @@ const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 						<div>
 							<NavLink
 								to="/dashboard/admin-home"
-								className={`text-2xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('admin-home') && 'bg-graydark dark:bg-meta-4'
+								className={`text-2xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('admin-home') && 'text-blue-800 bg-blue-300'
 									}`}
 							>
-								<div className='reversed-icon '><HiPencil size={28} /></div>
+								<div className='reversed-icon '><HiPencil size={28}  color='white'  /></div>
 								Studio
 							</NavLink>
 						</div>
@@ -117,7 +117,7 @@ const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 						<div className='my-4'>
 							<NavLink
 								to="/dashboard/settings"
-								className={`text-2xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('admin-home') && 'bg-graydark dark:bg-meta-4'
+								className={`text-2xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('/dashboard/settings') && 'text-blue-800 bg-blue-300'
 									}`}
 							>
 								<IoPerson size={28} color='white' />

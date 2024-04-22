@@ -1,17 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../../../components/common/Layouts/Layout';
 import { useDispatch, useSelector } from 'react-redux';
-import { increaseCount } from '../../../redux/slices/commonSlice';
+import { setSettingsCurrentTab } from '../../../redux/slices/commonSlice';
+import PersonalSection from '../../../components/admin/settings/PersonalSection';
+import { Link , Element } from 'react-scroll';
 
 const Settings = () => {
   const dispatch = useDispatch();
 
-  const count = useSelector((state) => state.commonstore.count);
+  const settingsTabName = useSelector((state) => state.commonstore.settingsCurrentTab);
+
+  useEffect(() => {
+    dispatch(setSettingsCurrentTab(''))
+  },[]);
 
   return (
    <Layout>
-        <h1 onClick={() => dispatch(increaseCount(1))}>Settings</h1>
-        <h1 className='text-5xl font-bold'>{count}</h1>
+        <div className='z-1 w-full'>
+            {/* <PersonalSection/>
+            <PersonalSection/>
+            <PersonalSection/> */}
+        </div>
    </Layout>
   )
 }

@@ -56,7 +56,7 @@ const Login = () => {
 
   const loginHandler = () => {
     // console.log('validation success')
-    navigate('/pixplay/admin-home')
+    navigate('/dashboard/admin-home')
   }
 
   return (

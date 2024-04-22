@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaUserAlt } from "react-icons/fa";
 import { IoMdLogOut } from "react-icons/io";
 import SidebarToggleButton from '../Layouts/LayoutSidebar/SidebarToggleButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSettingsCurrentTab } from '../../../redux/slices/commonSlice';
+import { Link } from 'react-scroll';
 
 const SettingsHeader = (props) => {
 	const navigate = useNavigate()
@@ -12,20 +15,62 @@ const SettingsHeader = (props) => {
 	};
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 
+	const dispatch = useDispatch()
+	const settingsTabName = useSelector((state) => state.commonstore.settingsCurrentTab);
+
 	return (
-		<header className="sticky top-0 z-999 flex w-full  drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none  border-b-2 border-gray-400">
-			<div className="flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11">
+		<header className="sticky top-0 z-999 flex w-full  drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none  border-b-2 border-gray-400 bg-white">
+			<div className="w-full flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11">
 				<div className="flex items-center gap-2 sm:gap-4 lg:hidden">
 					<SidebarToggleButton
 						sidebarOpen={props.sidebarOpen}
 						onClick={(e) => handleSidebarToggle(e)}
 					/>
 				</div>
-                <div>
-                    <button>
-                        
-                    </button>
-                </div>
+				<div className="overflow-x-auto whitespace-no-wrap lg:overflow-x-none">
+					<div className="inline-flex  mx-2">
+						<div className="ms-2">
+							<button 
+							onClick={() => dispatch(setSettingsCurrentTab('personal'))}
+							className={` font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${settingsTabName == 'personal' ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>Personal</button>
+						</div>
+
+						<div className="mx-4">
+							<button
+							onClick={() => dispatch(setSettingsCurrentTab('brand'))}
+							className={`font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${settingsTabName == 'brand' ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>Brand</button>
+						</div>
+
+						<div className="">
+							<button
+							onClick={() => dispatch(setSettingsCurrentTab('Organsation'))}
+							className={`font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${settingsTabName == 'Organsation' ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>Organsation</button>
+						</div>
+
+						<div className="mx-4">
+							<button
+							onClick={() => dispatch(setSettingsCurrentTab('Team'))}
+							className={`font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${settingsTabName == 'Team' ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>Team</button>
+						</div>
+
+						<div className="ms-2">
+							<button
+							onClick={() => dispatch(setSettingsCurrentTab('Subscription'))}
+							className={`font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${settingsTabName == 'Subscription' ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>Subscription</button>
+						</div>
+
+						<div className="mx-4">
+							<Link  to="developer" spy={true} smooth={true} offset={50} duration={500} >
+							<button
+							// onClick={() => dispatch(setSettingsCurrentTab('Developer'))}
+							className={`font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${settingsTabName == 'Developer' ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>
+								Developer
+							</button>
+							</Link>
+							
+						</div>
+					</div>
+				</div>
                 <div className='ms-auto' onClick={() => setDropdownOpen(!dropdownOpen)}>
                 <FaUserAlt color='#1199EE' size={30}/>
                 </div>

@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
 
 				<div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
 					{
-						pathname == '/dashboard/admin-home' ? <SettingsHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> : <LayoutHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+						pathname == '/dashboard/settings' ? <SettingsHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> : <LayoutHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 					}
 					
 					

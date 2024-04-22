@@ -2,18 +2,18 @@ import {createSlice} from '@reduxjs/toolkit';
 // import {persistReducer} from 'redux-persist';
 
 export const commonSlice = createSlice({
-  name: 'creditInvoice',
+  name: 'commonstoreslice',
   initialState: {
-    count: 0,
+    settingsCurrentTab: 0,
   },
   reducers: {
-    increaseCount: (state, action) => {
-      state.count += action.payload  ;
+    setSettingsCurrentTab: (state, action) => {
+      state.settingsCurrentTab = action.payload  ;
     },
   },
 });
 
-export const {increaseCount} =
+export const {setSettingsCurrentTab} =
   commonSlice.actions;
 
 export const commonSliceReducer = commonSlice.reducer;
