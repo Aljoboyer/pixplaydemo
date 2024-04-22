@@ -4,26 +4,28 @@ import { FaUserAlt } from "react-icons/fa";
 import { IoMdLogOut } from "react-icons/io";
 import SidebarToggleButton from '../Layouts/LayoutSidebar/SidebarToggleButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSettingsCurrentTab } from '../../../redux/slices/commonSlice';
+import { setSettingsCurrentTab, setSidebarOpen } from '../../../redux/slices/commonSlice';
 import { Link } from 'react-scroll';
 
 const SettingsHeader = (props) => {
-	const navigate = useNavigate()
-	const handleSidebarToggle = (e) => {
-		e.stopPropagation();
-		props.setSidebarOpen(!props.sidebarOpen);
-	};
-	const [dropdownOpen, setDropdownOpen] = useState(false);
-
+	const navigate = useNavigate();
 	const dispatch = useDispatch()
 	const settingsTabName = useSelector((state) => state.commonstore.settingsCurrentTab);
+	const sidebarOpen = useSelector((state) => state.commonstore.sidebarOpen);
+
+	const handleSidebarToggle = (e) => {
+		e.stopPropagation();
+		// props.setSidebarOpen(!props.sidebarOpen);
+		dispatch(setSidebarOpen(!sidebarOpen))
+	};
+	const [dropdownOpen, setDropdownOpen] = useState(false);
 
 	return (
 		<header className="sticky top-0 z-999 flex w-full  drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none  border-b-2 border-gray-400 bg-white">
 			<div className="w-full flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11">
 				<div className="flex items-center gap-2 sm:gap-4 lg:hidden">
 					<SidebarToggleButton
-						sidebarOpen={props.sidebarOpen}
+						sidebarOpen={sidebarOpen}
 						onClick={(e) => handleSidebarToggle(e)}
 					/>
 				</div>
@@ -60,14 +62,14 @@ const SettingsHeader = (props) => {
 						</div>
 
 						<div className="mx-4">
-							<Link  to="developer" spy={true} smooth={true} offset={50} duration={500} >
 							<button
-							// onClick={() => dispatch(setSettingsCurrentTab('Developer'))}
-							className={`font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${settingsTabName == 'Developer' ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>
+							onClick={() => {
+								dispatch(setSettingsCurrentTab('Developer'))
+								props.scrollHandler('Developer')
+							}}
+							className={`cursor-pointer font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${settingsTabName == 'Developer' ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>
 								Developer
 							</button>
-							</Link>
-							
 						</div>
 					</div>
 				</div>

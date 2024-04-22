@@ -3,16 +3,18 @@ import LayoutHeader from './LayoutHeader/LayoutHeader';
 import { useLocation, useNavigate } from 'react-router-dom';
 import LayoutSidebar from './LayoutSidebar/LayoutSidebar';
 import SettingsHeader from '../Headers/SettingsHeader';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSidebarOpen } from '../../../redux/slices/commonSlice';
 // import { ToastContainer } from 'react-toastify';
 // import "react-toastify/dist/ReactToastify.css";
 
 const Layout = ({ children }) => {
 
-	const [sidebarOpen, setSidebarOpen] = useState(false);
+	// const [sidebarOpen, setSidebarOpen] = useState(false);
 	const navigate = useNavigate()
 	const location = useLocation();
 	const { pathname } = location;
-
+	const dispatch = useDispatch()
 	// useEffect(() => {
 	// 	const token = localStorage.getItem('token')
 	// 	if(!token){
@@ -21,19 +23,27 @@ const Layout = ({ children }) => {
 	//   }, []);
 
 	// console.log('Pathname =', pathname)
+
+	const sidebarOpen = useSelector((state) => state.commonstore.sidebarOpen);
+
+
+	const setSidebarOpenHandler = (sidebarShow) => {
+		dispatch(setSidebarOpen(sidebarShow))
+	}
+	
 	return (
 		<div className="">
 			<div className="flex h-screen overflow-hidden">
-				<LayoutSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+				<LayoutSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpenHandler} />
 
 				<div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
 					{
-						pathname == '/dashboard/settings' ? <SettingsHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> : <LayoutHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+						pathname == '/dashboard/admin-home' ? <LayoutHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> : ''
 					}
 					
 					
-					<main>
-						<div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+					<main className=''>
+						<div className={`mx-auto max-w-screen-2xl ${pathname !== '/dashboard/settings' ? 'p-4 md:p-6 2xl:p-10' : ''}`}>
 							{/* <ToastContainer/> */}
 							{children}
 						</div>

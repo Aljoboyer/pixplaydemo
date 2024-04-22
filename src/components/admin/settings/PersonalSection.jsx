@@ -4,7 +4,7 @@ import ImageUpload from '../../common/ImageUpload/ImageUpload';
 
 const PersonalSection = () => {
   return (
-   <div className='flex flex-row justify-evenly'>
+   <div   className='flex flex-row justify-evenly w-full'>
         <div className='w-full lg:w-1/2 bg-[#EBEEF0] p-4 rounded-md'>
             
               <div className='xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-col sm:flex sm:flex-col mt-4 justify-center'>

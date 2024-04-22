@@ -3,12 +3,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaUserAlt } from "react-icons/fa";
 import { IoMdLogOut } from "react-icons/io";
 import SidebarToggleButton from '../LayoutSidebar/SidebarToggleButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSidebarOpen } from '../../../../redux/slices/commonSlice';
 
 const LayoutHeader = (props) => {
 	const navigate = useNavigate()
+	const dispatch = useDispatch()
+
+	const sidebarOpen = useSelector((state) => state.commonstore.sidebarOpen);
+
 	const handleSidebarToggle = (e) => {
 		e.stopPropagation();
-		props.setSidebarOpen(!props.sidebarOpen);
+		// props.setSidebarOpen(!props.sidebarOpen);
+		dispatch(setSidebarOpen(!sidebarOpen))
 	};
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 
