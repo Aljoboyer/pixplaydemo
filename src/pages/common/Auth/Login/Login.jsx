@@ -13,45 +13,33 @@ const Login = () => {
 
   const validationHandler = () => {
     // console.log('clicked')
-      if(!loginData?.email && !loginData?.phone){
-        setLoginErr({...loginErr, emailErr: 'Email is required', phoneErr: 'Phone is required',})
+      if(!loginData?.email && !loginData?.password){
+        setLoginErr({...loginErr, emailErr: 'Email is required', passwordErr: 'Password is required',})
         return
       }
-      else{
-        if(loginData?.email){
-            let isValid = true
-            if(!loginData?.password){
-                setLoginErr({...loginErr, passwordErr: 'Enter your password'})
-                isValid = false
-            }
-            if(!loginData?.email.match(emailRegex)){
-                setLoginErr({...loginErr, emailErr: 'Please input a valid email'})
-                isValid = false
-            }
-            if(!passwordRegex.test(loginData?.password)){
-                setLoginErr({...loginErr, passwordErr: 'Password must be minimum 8th character long with one lowercase , uppercase letters, At least one Number & one special character'})
-                isValid = false
-            }
-            if(isValid){
-                loginHandler()
-            }
-        }
-        else if(loginData?.phone){
-            let isValid = true
-            if(!(/^\d+$/).test(loginData?.phone)){
-                setLoginErr({...loginErr, phoneErr: 'Please input a valid phone number',})
-                isValid = false
-            }
-
-            if (loginData?.phone?.length !== 10) {
-                setLoginErr({...loginErr, phoneErr: 'Please input a valid phone number',})
-                isValid = false
-              }
-            if(isValid){
-                loginHandler()
-            }
-        }
+      if(!loginData?.email){
+        setLoginErr({...loginErr, emailErr: 'Email is required'})
+        return
       }
+      if(!loginData?.password){
+        setLoginErr({...loginErr, passwordErr: 'Password is required',})
+        return
+      }
+      if(loginData?.email && loginData?.password){
+        let isValid = true
+        if(!loginData?.email.match(/\S+@\S+\.\S+/)){
+            setLoginErr({...loginErr, emailErr: 'Please input a valid email'})
+            isValid = false
+            return
+        }
+        if(!passwordRegex.test(loginData?.password)){
+            setLoginErr({...loginErr, passwordErr: 'Password must be minimum 8th character long with one lowercase , uppercase letters, At least one Number & one special character'})
+            isValid = false
+        }
+        if(isValid){
+            loginHandler()
+        }
+    }
   }
 
   const loginHandler = () => {
@@ -80,58 +68,33 @@ const Login = () => {
                             setLoginData({...loginData, email: e.target.value})
                             setLoginErr({
                                 emailErr: '',
-                                phoneErr: '',
                               })
                           }}
                           disabled={loginData?.phone ? true : false}
-                          className='outline-none border-0 rounded ms-7 p-2' placeholder='Email'/>
+                          className='outline-none border-0 rounded ms-11 p-2' placeholder='Email'/>
+                       {
+                        loginErr?.emailErr && <div className=' mt-4 ms-14'>
+                       <p className='text-sm font-bold text-red-500 ms-11  text-start'>{loginErr?.emailErr}</p>
+                       </div> 
+                       }
+                      </div>
+                      <div className='mt-4'>
+                          <label className='text-white font-medium' htmlFor="email">Password *</label>
                           <input
                            onChange={(e) => {
                             setLoginData({...loginData, password: e.target.value})
                             setLoginErr({...loginErr,  passwordErr: ''})
                           }}
                           disabled={loginData?.phone ? true : false}
-                          type='password' className='outline-none border-0 rounded ms-[78px] lg:ms-17 xl:ms-4 p-2 mt-4 lg:mt-4 xl:mt-0' placeholder='Password'/>
-                       {
-                        (loginErr?.emailErr || loginErr?.passwordErr) && <div className=' mt-4 ms-14'>
-                       <p className='text-sm font-bold text-red-500 ms-7  text-start'>{loginErr?.emailErr}</p>
-                        <p className='text-sm font-bold text-red-500 ms-7  text-start'>{loginErr?.passwordErr}</p>
+                          type='password' className='outline-none border-0 rounded ms-[20px] lg:ms-17 xl:ms-4 p-2 mt-4 lg:mt-4 xl:mt-0' placeholder='Password'/>
+                      {
+                        loginErr?.passwordErr && <div className=' mt-4 ms-14'>
+                        <p className='text-sm font-bold text-red-500 ms-11  text-start'>{loginErr?.passwordErr}</p>
                        </div> 
                        }
                       </div>
-                       
-                     <div className='flex flex-row justify-center my-4   xl:w-[500px]  xl:ms-11'>
-                        <p className='text-white font-medium  w-[35px]'>OR</p>
-                     </div>
                       
-                      <div>
-                          <label className='text-white font-medium' htmlFor="email">Mobile *</label>
-                          <input
-                           onChange={(e) => {
-                            setLoginData({...loginData, phone: e.target.value})
-                            setLoginErr({
-                                emailErr: '',
-                                phoneErr: '',
-                              })
-                          }}
-                          disabled={loginData?.email ? true : false}
-                          className='outline-none border-0 rounded ms-4 p-2' placeholder='Number'/>
-                          <input
-                           onChange={(e) => {
-                            setLoginData({...loginData, otp: e.target.value})
-                            setLoginErr({...loginErr,  otpErr: ''})
-                          }}
-                          disabled={loginData?.email ? true : false}
-                          className='outline-none border-0 rounded ms-[78px] lg:ms-17 xl:ms-4 p-2 mt-4 lg:mt-4 xl:mt-0' placeholder='OTP'/>
-                       {
-                        (loginErr?.phoneErr || loginErr?.otpErr) && <div className=' mt-4 ms-14'>
-                       <p className='text-sm font-bold text-red-500 ms-7  text-start'>{loginErr?.phoneErr}</p>
-                        <p className='text-sm font-bold text-red-500 ms-7  text-start'>{loginErr?.otpErr}</p>
-                       </div> 
-                       }
-                      </div>
-
-                      <button onClick={loginHandler} className='font-bold bg-white px-5 py-2 ms-20 rounded mt-7 '>Login</button>
+                      <button onClick={validationHandler} className='font-bold bg-white px-5 py-2 ms-24 rounded mt-7 '>Login</button>
                 </div>
 
             </div>

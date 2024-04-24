@@ -65,7 +65,7 @@ const SettingsHeader = (props) => {
 							<button
 							onClick={() => {
 								dispatch(setSettingsCurrentTab('Developer'))
-								props.scrollHandler('Developer')
+								// props.scrollHandler('Developer')
 							}}
 							className={`cursor-pointer font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${settingsTabName == 'Developer' ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>
 								Developer

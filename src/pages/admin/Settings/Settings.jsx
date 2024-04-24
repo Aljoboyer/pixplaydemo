@@ -23,14 +23,14 @@ const Settings = () => {
 
   return (
    <Layout>
-      {/* <SettingsHeader scrollHandler={scrollToRef} /> 
-     <div className='w-full p-4 md:p-6 2xl:p-10'>
+       <SettingsHeader scrollHandler={scrollToRef} /> 
+     {/* <div className='w-full p-4 md:p-6 2xl:p-10'>
        <PersonalSection/>
        <PersonalSection/>
         <section ref={contactRef}>
         <PersonalSection/>
         </section>
-     </div> */}
+     </div>  */}
    </Layout>
   )
 }
