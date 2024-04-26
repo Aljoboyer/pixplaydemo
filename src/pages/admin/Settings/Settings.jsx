@@ -3,34 +3,26 @@ import Layout from '../../../components/common/Layouts/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import {  setSettingsCurrentTab } from '../../../redux/slices/commonSlice';
 import PersonalSection from '../../../components/admin/settings/PersonalSection';
-import { Link , Element } from 'react-scroll';
-import SettingsHeader from '../../../components/common/Headers/SettingsHeader';
 
 const Settings = () => {
   const dispatch = useDispatch();
   const contactRef = useRef(null);
 
   useEffect(() => {
-    dispatch(setSettingsCurrentTab(''))
+    dispatch(setSettingsCurrentTab('personal'))
   },[]);
 
-  const scrollToRef = (scrollItem) => {
+  // const scrollToRef = (scrollItem) => {
 		
-    if(scrollItem == 'Developer'){
-      contactRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-	};
+  //   if(scrollItem == 'Developer'){
+  //     contactRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  //   }
+	// };
 
+  const settingsTabName = useSelector((state) => state.commonstore.settingsCurrentTab);
   return (
    <Layout>
-       <SettingsHeader scrollHandler={scrollToRef} /> 
-     {/* <div className='w-full p-4 md:p-6 2xl:p-10'>
-       <PersonalSection/>
-       <PersonalSection/>
-        <section ref={contactRef}>
-        <PersonalSection/>
-        </section>
-     </div>  */}
+      { settingsTabName == 'personal' ?  <PersonalSection/> : <h1 className='text-center font-bold text-3xl'>Coming Soon</h1>}
    </Layout>
   )
 }

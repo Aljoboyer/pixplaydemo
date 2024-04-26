@@ -38,12 +38,12 @@ const Layout = ({ children }) => {
 
 				<div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
 					{
-						pathname == '/dashboard/admin-home' ? <LayoutHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> : ''
+						pathname == '/dashboard/settings' ? <SettingsHeader/> : <LayoutHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> 
 					}
 					
 					
 					<main className=''>
-						<div className={`mx-auto max-w-screen-2xl ${pathname !== '/dashboard/settings' ? 'p-4 md:p-6 2xl:p-10' : ''}`}>
+						<div className={`mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10`}>
 							{/* <ToastContainer/> */}
 							{children}
 						</div>
