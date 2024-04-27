@@ -12,7 +12,7 @@ const SignUp = () => {
    const [nameErr, setNameErr] = useState('')
    const [emailErr, setEmailErr] = useState('')
    const [passwordErr, setPasswordErr] = useState('')
-    
+    const [signUpErr, setSignUpErr] = useState({})
    const validatehandler = () => {
     let isValid  = true;
 
