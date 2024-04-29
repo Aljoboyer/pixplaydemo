@@ -5,6 +5,7 @@ import {  setSettingsCurrentTab } from '../../../redux/slices/commonSlice';
 import PersonalSection from '../../../components/admin/settings/PersonalSection';
 import BrandSection from '../../../components/admin/settings/BrandSection';
 import OrganisationSection from '../../../components/admin/settings/OrganisationSection';
+import Teams from '../../../components/admin/settings/Teams';
 
 const Settings = () => {
   const dispatch = useDispatch();
@@ -24,8 +25,8 @@ const Settings = () => {
   const settingsTabName = useSelector((state) => state.commonstore.settingsCurrentTab);
   return (
    <Layout>
-      { settingsTabName == 'personal' ?  <PersonalSection/> : settingsTabName == 'brand' ? <BrandSection /> : settingsTabName == 'Organsation' ? <OrganisationSection/> : <h1 className='text-center font-bold text-3xl'>Coming Soon</h1>}
-      
+      { settingsTabName == 'personal' ?  <PersonalSection/> : settingsTabName == 'brand' ? <BrandSection /> : settingsTabName == 'Organsation' ? <OrganisationSection/>  : <h1 className='text-center font-bold text-3xl'>Coming Soon</h1>}
+      {/* : settingsTabName == 'Team' ? <Teams/> */}
    </Layout>
   )
 }
