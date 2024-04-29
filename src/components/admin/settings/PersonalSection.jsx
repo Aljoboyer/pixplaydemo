@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SettingsVector from '../../../assets/image/settingsVector.jpg';
 import ImageUpload from '../../common/ImageUpload/ImageUpload';
+import { MultiSelect } from '../../common/MultiSelect/MultiSelect';
 
 const PersonalSection = () => {
+    const departmentOptions =  [{label: 'MARKETING', value: 'MARKETING'},
+    {label: 'OPERATION', value: 'OPERATION'}, 
+    {label: 'ADMNISTRATION', value: 'ADMNISTRATION'}, 
+    {label: 'COMMUNICATION', value: 'COMMUNICATION'},
+    {label: 'SYSTEMS', value: 'SYSTEMS'} ]
+    
+    const [selectedDepartement, setSelectedDepartment] = useState([])
   return (
    <div   className='flex flex-row justify-evenly w-full'>
         <div className='w-full lg:w-1/2 bg-[#EBEEF0] p-4 rounded-md'>
@@ -31,7 +39,13 @@ const PersonalSection = () => {
                       </div>
 
                       <div className='mt-4 ms-0 lg:ms-4'>
-                          <input className='w-full bg-[#DDDDDD] rounded-md px-4 py-2' placeholder='Your Department' type="text" />
+                         <MultiSelect
+                          optionsData={departmentOptions || []}
+                          selectedOptions={selectedDepartement}
+                          setSelectedOptions={setSelectedDepartment}
+                          label=""
+                          placeholder="Select Department"
+                         />
                       </div>
 
                       <div className='flex flex-row justify-center mt-4 ps-0 lg:ps-4 w-full'>

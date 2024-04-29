@@ -22,22 +22,22 @@ const BrandSection = () => {
 
                       <div className='mt-4 ms-0 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[100px]'>Facebook</p>
-                          <input className='w-full md:w-4/5 bg-[#DDDDDD] rounded-md px-4 py-2 block ms-0 md:ms-4 mt-2 md:mt-0' placeholder='Brand Name' type="text" />
+                          <input className='w-full md:w-4/5 bg-[#DDDDDD] rounded-md px-4 py-2 block ms-0 md:ms-4 mt-2 md:mt-0' placeholder='https://www.facebook.com/yourusername' type="text" />
                       </div>
 
                       <div className='mt-4 ms-0 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[100px]'>X</p>
-                          <input className='w-full md:w-4/5 bg-[#DDDDDD] rounded-md px-4 py-2 block ms-0 md:ms-4 mt-2 md:mt-0' placeholder='Brand Name' type="text" />
+                          <input className='w-full md:w-4/5 bg-[#DDDDDD] rounded-md px-4 py-2 block ms-0 md:ms-4 mt-2 md:mt-0' placeholder='https://www.x.com/yourusername' type="text" />
                       </div>
 
                       <div className='mt-4 ms-0 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[100px]'>Instagram</p>
-                          <input className='w-full md:w-4/5 bg-[#DDDDDD] rounded-md px-4 py-2 block ms-0 md:ms-4 mt-2 md:mt-0' placeholder='Brand Name' type="text" />
+                          <input className='w-full md:w-4/5 bg-[#DDDDDD] rounded-md px-4 py-2 block ms-0 md:ms-4 mt-2 md:mt-0' placeholder='https://www.instagram.com/yourusername' type="text" />
                       </div>
                       
                       <div className='mt-4 ms-0 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[100px]'>Google</p>
-                          <input className='w-full md:w-4/5 bg-[#DDDDDD] rounded-md px-4 py-2 block ms-0 md:ms-4 mt-2 md:mt-0' placeholder='Brand Name' type="text" />
+                          <input className='w-full md:w-4/5 bg-[#DDDDDD] rounded-md px-4 py-2 block ms-0 md:ms-4 mt-2 md:mt-0' placeholder='https://plus.google.com/yourid' type="text" />
                       </div>
 
                       <div className='flex flex-row justify-center mt-4 ps-0 lg:ps-4 w-full'>

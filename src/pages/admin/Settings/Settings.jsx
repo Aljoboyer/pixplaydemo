@@ -24,9 +24,7 @@ const Settings = () => {
   const settingsTabName = useSelector((state) => state.commonstore.settingsCurrentTab);
   return (
    <Layout>
-      {/* { settingsTabName == 'personal' ?  <PersonalSection/> : settingsTabName == 'brand' ? <BrandSection /> : settingsTabName == 'Organsation' ? <OrganisationSection/> : <h1 className='text-center font-bold text-3xl'>Coming Soon</h1>} */}
-
-      { settingsTabName == 'personal' ?  <PersonalSection/> : settingsTabName == 'brand' ? <BrandSection /> : <h1 className='text-center font-bold text-3xl'>Coming Soon</h1>}
+      { settingsTabName == 'personal' ?  <PersonalSection/> : settingsTabName == 'brand' ? <BrandSection /> : settingsTabName == 'Organsation' ? <OrganisationSection/> : <h1 className='text-center font-bold text-3xl'>Coming Soon</h1>}
       
    </Layout>
   )

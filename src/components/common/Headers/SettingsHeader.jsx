@@ -5,7 +5,6 @@ import { IoMdLogOut } from "react-icons/io";
 import SidebarToggleButton from '../Layouts/LayoutSidebar/SidebarToggleButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSettingsCurrentTab, setSidebarOpen } from '../../../redux/slices/commonSlice';
-import { Link } from 'react-scroll';
 
 const SettingsHeader = (props) => {
 	const navigate = useNavigate();
