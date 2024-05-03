@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaUserAlt } from "react-icons/fa";
-import { IoMdLogOut } from "react-icons/io";
 import SidebarToggleButton from '../Layouts/LayoutSidebar/SidebarToggleButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSettingsCurrentTab, setSidebarOpen } from '../../../redux/slices/commonSlice';
+import { IoNotifications } from "react-icons/io5";
 
 const SettingsHeader = (props) => {
 	const navigate = useNavigate();
@@ -53,29 +52,15 @@ const SettingsHeader = (props) => {
 							onClick={() => dispatch(setSettingsCurrentTab('Team'))}
 							className={`font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${settingsTabName == 'Team' ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>Team</button>
 						</div>
-
-						<div className="ms-2">
-							<button
-							onClick={() => dispatch(setSettingsCurrentTab('Subscription'))}
-							className={`font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${settingsTabName == 'Subscription' ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>Subscription</button>
-						</div>
-
-						<div className="mx-4">
-							<button
-							onClick={() => {
-								dispatch(setSettingsCurrentTab('Developer'))
-							}}
-							className={`cursor-pointer font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${settingsTabName == 'Developer' ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>
-								Developer
-							</button>
-						</div>
 					</div>
 				</div>
-                <div className='ms-auto' onClick={() => setDropdownOpen(!dropdownOpen)}>
-                <FaUserAlt color='#1199EE' size={30}/>
+                <div className='ms-auto'
+				//  onClick={() => setDropdownOpen(!dropdownOpen)}
+				>
+                <IoNotifications color='#1199EE' size={40}/>
                 </div>
 
-				<div className="flex items-center gap-3 2xsm:gap-7">
+				{/* <div className="flex items-center gap-3 2xsm:gap-7">
 					<div className="relative">
 						<div
 							className={`absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${dropdownOpen === true ? 'block' : 'hidden'
@@ -93,7 +78,7 @@ const SettingsHeader = (props) => {
 							</p>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</header>
 	);

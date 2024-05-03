@@ -87,17 +87,17 @@ const TeamInviteModal = ({ visible, onClose }) => {
                             <tbody>
                                 {
                                     invitationData?.map((item) => (
-                                        <tr>
-                                        <td className={`px-2 py-4 text-left`}>
+                                        <tr className=''>
+                                        <td className={`px-2 py-4 text-left py-2`}>
                                                 {item}
                                         </td>
-                                        <td className={`px-2 text-left`}>
+                                        <td className={`px-2 text-left py-2`}>
                                             <select className='border border-2 border-gray-300  rounded p-2 block w-full' value="Admin" disabled>
                                                 <option value="Admin">Admin</option>
                                             </select>
                                         </td>
-                                        <td className={`px-2`}>
-                                            <button onClick={() => peopleRemoveHandler(item)} className='border border-1 border-gray-200 rounded-md font-bold py-2 px-4 mt-2 bg-gray-100 text-xl'>X</button>
+                                        <td className={`px-2 py-2`}>
+                                            <button onClick={() => peopleRemoveHandler(item)} className='border border-1 border-gray-200 rounded-md font-bold py-2 px-4  bg-gray-100 text-xl'>X</button>
                                         </td>
                                      </tr>
                                     ))
@@ -117,7 +117,7 @@ const TeamInviteModal = ({ visible, onClose }) => {
 
                  <div className='flex flex-row justify-end items-center border-t-2 border-gray-200 pb-4 mt-2'>
                     
-                 <button className={`flex flex-row items-center border border-1 border-gray-300 rounded-md text-xl font-medium px-4 py-2 mt-2 ${invitationData?.length > 0 ? 'bg-[#1199EE] text-white' : 'bg-gray-200'}`}>
+                 <button onClick={onClose} className={`flex flex-row items-center border border-1 border-gray-300 rounded-md text-xl font-medium px-4 py-2 mt-2 ${invitationData?.length > 0 ? 'bg-[#1199EE] text-white' : 'bg-gray-200'}`}>
                     <MdMailOutline  size={25} color={`${invitationData?.length > 0 ? 'white' : 'black'}`} />
                     <span className='ms-2'>Send Invite</span>
                 </button>
