@@ -95,6 +95,8 @@ const Teams = () => {
                 <ConfirmationModal
                 onClose={toggleDeleteModal}
                 visible={showDeleteModal}
+                mainTitle={'Delete Jhon@gmail.com'}
+                infoTitle={<><span className='font-medium'>jhonday@gmail.com</span> will be deleted permanently and this action cannot be undone.</>}
                 />
             )
           }

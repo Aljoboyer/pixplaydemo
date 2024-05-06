@@ -15,7 +15,7 @@ const MediaInfo = () => {
         </div>
 }
 
-const MediaList = () => {
+const MediaList = ({mediaDeleteHandler}) => {
   return (
     <div className='bg-gray-100 p-4 mt-4 w-full rounded z-0'>
         <div className='w-full overflow-y-visible overflow-x-auto  mt-4 bg-white p-4 rounded'>
@@ -34,7 +34,7 @@ const MediaList = () => {
                     [1,2,3,4,5,6,7]?.map((item) => (
                       <tr className='border border-b-1 border-gray-300 px-2 cursor-pointer hover:bg-gray-100'>
                       <td className=' py-2 px-2'>
-                      <MediaInfo/>
+                            <MediaInfo/>
                       </td>
                       <td className='px-6 text-center py-2'>
                           Image
@@ -43,14 +43,14 @@ const MediaList = () => {
                           9KB
                       </td>
                       <td className='w-[300px] text-center py-2'>
-                        <MdOutlineDelete color='red' className='' size={24}/>
+                        <MdOutlineDelete onClick={mediaDeleteHandler} color='red' className='' size={24}/>
                       </td>
                   </tr>
                     ))
                    }
                 </tbody>
             </table>
-            </div>
+        </div>
     </div>
   )
 }

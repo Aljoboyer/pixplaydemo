@@ -3,7 +3,7 @@ import { MdOutlineCancel } from 'react-icons/md';
 import { FiPlusCircle } from "react-icons/fi";
 import { MdMailOutline } from "react-icons/md";
 
-const ConfirmationModal = ({ visible, onClose , onClickHandler}) => {
+const ConfirmationModal = ({ visible, onClose , onClickHandler, mainTitle, infoTitle}) => {
    
     const toggleModal = (e) => {
         if (e.target.id === 'ConfirmationModal') onClose();
@@ -30,12 +30,12 @@ const ConfirmationModal = ({ visible, onClose , onClickHandler}) => {
                </div>
                 
                 <div className='py-4'>
-                    <h1 className='text-xl md:text-2xl lg:text-3xl font-bold'>Delete Jhon@gmail.com</h1>
-                    <p className='mt-2'><span className='font-medium'>jhonday@gmail.com</span> will be deleted permanently and this action cannot be undone.</p>
+                    <h1 className='text-xl md:text-2xl lg:text-3xl font-bold'>{mainTitle}</h1>
+                    <p className='mt-2'>{infoTitle}</p>
 
                     <div className='flex flex-row justify-end items-center mt-2'>
                         <button onClick={() => onClose()} className='px-4 py-2 ms-2 font-medium border border-2 border-gray-300 rounded-md text-base md:text-lg'>Cancel</button>
-                        <button onClick={() => onClose()} className='px-4 py-2 ms-2 font-medium border border-2 rounded-md bg-[#015FDF] text-white text-base md:text-lg'>Confirm</button>
+                        <button onClick={() => onClose()} className='px-4 py-2 ms-2 font-medium  rounded-md bg-[#c50707] text-white text-base md:text-lg'>Confirm</button>
                     </div>
                 </div>
             </div>
