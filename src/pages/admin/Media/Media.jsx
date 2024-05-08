@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../../components/common/Layouts/Layout';
 import { IoSearch } from "react-icons/io5";
 import MediaList from '../../../components/admin/Media/MediaList';
-import MediaUploadModal from '../../../components/admin/Media/MediaUploadModal/MediaUploadModal';
+import MediaUploadModal from '../../../components/admin/Media/MediaModal/MediaUploadModal';
 import ConfirmationModal from '../../../components/common/Modals/ConfirmationModal';
+import MediaViewModal from '../../../components/admin/Media/MediaModal/MediaViewModal';
 
 const Media = () => {
   const [showMediaUploadModal, setShowMediaUploadModal] = useState(false)
   const [currentTab, setCurrentTab] = useState('')
   const [mediaDeleteModalShow, setMediaDeleteModalShow] = useState(false)
+  const [mediaViewModalShow, setMediaViewModalShow] = useState(false)
 
   const toggleUploadModal = () => {
     setShowMediaUploadModal(!showMediaUploadModal);
@@ -17,12 +19,24 @@ const Media = () => {
   const toggleDeleteModal = () => {
     setMediaDeleteModalShow(!mediaDeleteModalShow)
   }
+
+  const toggleViewModal = () => {
+    setMediaViewModalShow(!mediaViewModalShow)
+  }
+
   const mediaDeleteHandler = () => {
     toggleDeleteModal()
   }
+
+  const mediaViewHandler = () => {
+    toggleViewModal()
+  }
+
   useEffect(() => {
     setCurrentTab('All')
   },[])
+
+
   return (
     <Layout>
         {/* <h1 className='text-center text-3xl font-bold'>Media Coming Soon</h1> */}
@@ -40,7 +54,7 @@ const Media = () => {
                 </div>
         </div>
         
-          <MediaList mediaDeleteHandler={mediaDeleteHandler}/>
+          <MediaList mediaDeleteHandler={mediaDeleteHandler} mediaViewHandler={mediaViewHandler}/>
 
           {
            showMediaUploadModal && <MediaUploadModal
@@ -58,6 +72,14 @@ const Media = () => {
                 infoTitle={'image.png will be deleted and moved to the Trash.'}
                 />
             )
+          }
+
+          {
+            <MediaViewModal 
+            onClose={toggleViewModal}
+            visible={mediaViewModalShow}
+            mediaDeleteHandler={mediaDeleteHandler}
+            />
           }
           <div className='w-full  sticky bottom-0 z-999 bg-white  py-4 px-4 border border-t-2 border-gray-200'>
             <div className="overflow-x-auto whitespace-no-wrap lg:overflow-x-none">

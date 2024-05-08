@@ -2,7 +2,6 @@ import React from 'react'
 import { GoFileMedia } from "react-icons/go";
 import { MdOutlineDelete } from "react-icons/md";
 
-
 const MediaInfo = () => {
     return <div className='w-fit flex flex-row justify-center items-center py-2'>
             <div className='w-[50px] h-[50px] rounded-md bg-gray-200 flex flex-row justify-center items-center'>
@@ -15,7 +14,7 @@ const MediaInfo = () => {
         </div>
 }
 
-const MediaList = ({mediaDeleteHandler}) => {
+const MediaList = ({mediaDeleteHandler, mediaViewHandler}) => {
   return (
     <div className='bg-gray-100 p-4 mt-4 w-full rounded z-0'>
         <div className='w-full overflow-y-visible overflow-x-auto  mt-4 bg-white p-4 rounded'>
@@ -32,7 +31,7 @@ const MediaList = ({mediaDeleteHandler}) => {
                 <tbody>
                    {
                     [1,2,3,4,5,6,7]?.map((item) => (
-                      <tr className='border-b border-gray-300 px-2 cursor-pointer hover:bg-gray-100'>
+                      <tr onClick={mediaViewHandler} className='border-b border-gray-300 px-2 cursor-pointer hover:bg-gray-100'>
                       <td className=' py-2 px-2'>
                             <MediaInfo/>
                       </td>

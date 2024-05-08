@@ -62,3 +62,8 @@
     background-color: #555; /* Color of the thumb on hover */
   }
   
+  .media_view_img{
+    object-fit: contain;
+    height: 90%;
+    width: 90%;
+  }
