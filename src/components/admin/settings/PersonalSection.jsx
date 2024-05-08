@@ -54,6 +54,22 @@ const PersonalSection = () => {
                   </div>
               </div>
           
+            <div className='mt-4 pb-2'>
+                <h1 className='text-xl md:text-2x lg:text-3xl font-bold text-start'>Security</h1>
+                <div className='mt-4  w-full xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-col sm:flex sm:flex-col'>
+                   <div className='w-full lg:w-1/2'>
+                        <p className='font-bold '>Old Password</p>
+                        <input className='w-full bg-[#DDDDDD] rounded-md px-4 py-2 mt-2' placeholder='Enter old password' type="text" />
+                   </div>
+                   <div className='w-full lg:w-1/2 ms-0 lg:ms-2 mt-4 lg:mt-0'>
+                        <p className='font-bold '>New Password</p>
+                        <input className='w-full bg-[#DDDDDD] rounded-md px-4 py-2 mt-2' placeholder='Enter new password' type="text" />
+                   </div>
+                </div>
+                <div className='flex flex-row justify-center mt-4  w-full'>
+                    <button className='w-full  bg-black text-white font-bold py-2 rounded-md'>SAVE</button>
+                </div>
+            </div>
         </div>
         <div className='hidden lg:block w-full lg:w-1/2'>
             <img className='w-full ' src={SettingsVector} alt="" />

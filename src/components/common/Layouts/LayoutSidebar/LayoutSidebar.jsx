@@ -74,10 +74,10 @@ const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 						<div>
 							<NavLink
 								to="/dashboard/admin-home"
-								className={`text-2xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('admin-home') && 'text-blue-800 bg-blue-300'
+								className={`text-xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('admin-home') && 'text-blue-800 bg-blue-300'
 									}`}
 							>
-								<div className='reversed-icon '><HiPencil size={28}  color='white'  /></div>
+								<div className='reversed-icon '><HiPencil size={24}  color='white'  /></div>
 								Studio
 							</NavLink>
 						</div>
@@ -85,10 +85,10 @@ const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 						<div className='my-4'>
 							<NavLink
 								to="/dashboard/Media"
-								className={`text-2xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('admin-home') && 'bg-graydark dark:bg-meta-4'
+								className={`text-xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('/dashboard/Media') && 'text-blue-800 bg-blue-300'
 									}`}
 							>
-								<IoIosCloudy size={28} color='white' />
+								<IoIosCloudy size={24} color='white' />
 								Media
 							</NavLink>
 						</div>
@@ -96,31 +96,31 @@ const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 						<div>
 							<NavLink
 								to="/pixplay/admin-home"
-								className={`text-2xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('admin-home') && 'bg-graydark dark:bg-meta-4'
+								className={`text-xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('admin-home') && 'bg-graydark dark:bg-meta-4'
 									}`}
 							>
-								<LuBarChart size={28} color='white' />
+								<LuBarChart size={24} color='white' />
 								Analytics
 							</NavLink>
 						</div>
 
-						<div className='mt-32 lg:mt-26 pt-20'>
+						<div className='mt-32 lg:mt-26 pt-28'>
 							<NavLink
 								to="/pixplay/admin-home"
-								className={`text-2xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('admin-home') && 'bg-graydark dark:bg-meta-4'
+								className={`text-xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('admin-home') && 'bg-graydark dark:bg-meta-4'
 									}`}
 							>
-								<FaCircleRadiation size={28} color='white' />
+								<FaCircleRadiation size={24} color='white' />
 								Support
 							</NavLink>
 						</div>
 						<div className='my-4'>
 							<NavLink
 								to="/dashboard/settings"
-								className={`text-2xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('/dashboard/settings') && 'text-blue-800 bg-blue-300'
+								className={`text-xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('/dashboard/settings') && 'text-blue-800 bg-blue-300'
 									}`}
 							>
-								<IoPerson size={28} color='white' />
+								<IoPerson size={24} color='white' />
 								Setting
 							</NavLink>
 						</div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
 import MediaUpload from '../../../common/ImageUpload/MediaUpload';
 import { IoMdLink } from "react-icons/io";
+import MediaSelected from '../MediaSelected';
 
 const MediaUploadModal = ({ visible, onClose }) => {
     const [currentTab, setCurrentTab] = useState('')
@@ -66,7 +67,7 @@ const MediaUploadModal = ({ visible, onClose }) => {
                 </div>
                
                {
-                currentTab !== 'Link' &&
+                (currentTab == 'Image' || currentTab == 'Video' || currentTab == 'Documents') &&
                 <div>
                     <MediaUpload/>
                </div>
@@ -82,9 +83,12 @@ const MediaUploadModal = ({ visible, onClose }) => {
                 </div>
                }
 
+                {
+                    currentTab == 'Selected' && <MediaSelected/>
+                }
                <div className='flex flex-row justify-end items-center  pb-4 mt-2'>
                     
-                 <button onClick={onClose} className={`flex flex-row items-center border border-1 border-gray-300 rounded-md text-xl font-medium px-4 py-2 mt-2 bg-[#1199EE] text-white`}>
+                 <button onClick={() => setCurrentTab('Selected')} className={`flex flex-row items-center border border-1 border-gray-300 rounded-md text-xl font-medium px-4 py-2 mt-2 bg-[#1199EE] text-white`}>
                     View Selected
                 </button>
                </div>
