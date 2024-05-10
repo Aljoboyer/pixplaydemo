@@ -6,6 +6,7 @@ import SignUp from './pages/common/Auth/SignUp/SignUp';
 import AdminHome from './pages/admin/AdminHome/AdminHome';
 import Settings from './pages/admin/Settings/Settings';
 import Media from './pages/admin/Media/Media';
+import Studio from './pages/admin/Studio/Studio';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/dashboard/admin-home" element={<AdminHome />} />
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/Media" element={<Media />} />
+          <Route path="/dashboard/Studio" element={<Studio />} />
         </Routes>
       </Router>
     </main>

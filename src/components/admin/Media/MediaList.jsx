@@ -16,7 +16,7 @@ const MediaInfo = () => {
 
 const MediaList = ({mediaDeleteHandler, mediaViewHandler}) => {
   return (
-    <div className='bg-gray-100 p-4 mt-4 w-full rounded z-0'>
+    <div className='bg-gray-100 p-4 mt-4 w-full rounded z-0 min-h-screen'>
         <div className='w-full overflow-y-visible overflow-x-auto  mt-4 bg-white p-4 rounded'>
             <table className="w-full  table-auto overflow-visible mx-auto">
                 <thead className="  ">
@@ -30,7 +30,7 @@ const MediaList = ({mediaDeleteHandler, mediaViewHandler}) => {
 
                 <tbody>
                    {
-                    [1,2,3,4,5,6,7]?.map((item) => (
+                    [1,,2,3,4,5,6,7,8,9,10,11,12,14]?.map((item) => (
                       <tr onClick={mediaViewHandler} className='border-b border-gray-300 px-2 cursor-pointer hover:bg-gray-100'>
                       <td className=' py-2 px-2'>
                             <MediaInfo/>
@@ -55,3 +55,5 @@ const MediaList = ({mediaDeleteHandler, mediaViewHandler}) => {
 }
 
 export default MediaList;
+
+// 3,4,5,6,7,8,9,10,11,12,14,13,14,15,16,17,18,19,188,222,223,45

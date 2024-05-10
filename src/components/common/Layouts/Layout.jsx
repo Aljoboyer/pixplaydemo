@@ -8,7 +8,7 @@ import { setSidebarOpen } from '../../../redux/slices/commonSlice';
 // import { ToastContainer } from 'react-toastify';
 // import "react-toastify/dist/ReactToastify.css";
 
-const Layout = ({ children }) => {
+const Layout = ({ children , noTopPadding = false}) => {
 
 	// const [sidebarOpen, setSidebarOpen] = useState(false);
 	const navigate = useNavigate()
@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
 					
 					
 					<main className=''>
-						<div className={`mx-auto max-w-screen-2xl px-4 pt-4 md:px-6 md:pt-4 2xl:px-10 2xl:pt-10 `}>
+						<div className={`mx-auto max-w-screen-2xl px-4  md:px-6    ${noTopPadding ? '' : 'pt-4 md:pt-4 2xl:px-10 '}`}>
 							{/* <ToastContainer/> */}
 							{children}
 						</div>

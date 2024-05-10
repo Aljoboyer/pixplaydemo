@@ -73,8 +73,8 @@ const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 					<div  className="mb-2 flex flex-col items-between  gap-1.5">
 						<div>
 							<NavLink
-								to="/dashboard/admin-home"
-								className={`text-xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('admin-home') && 'text-blue-800 bg-blue-300'
+								to="/dashboard/Studio"
+								className={`text-xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('/dashboard/Studio') && 'text-blue-800 bg-blue-300'
 									}`}
 							>
 								<div className='reversed-icon '><HiPencil size={24}  color='white'  /></div>
