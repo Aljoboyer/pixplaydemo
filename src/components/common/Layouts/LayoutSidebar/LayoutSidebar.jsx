@@ -7,10 +7,14 @@ import { IoIosCloudy } from "react-icons/io";
 import { LuBarChart } from "react-icons/lu";
 import { FaCircleRadiation } from "react-icons/fa6";
 import { IoPerson } from "react-icons/io5";
+import { useDispatch, useSelector } from 'react-redux';
+import { setSupportPopUp } from '../../../../redux/slices/commonSlice';
 
 const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 	const location = useLocation();
 	const { pathname } = location;
+
+	const dispatch = useDispatch();
 
 	const trigger = useRef(null);
 	const sidebar = useRef(null);
@@ -60,6 +64,8 @@ const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 		}
 	}, [sidebarExpanded]);
 
+	const supportPopUp = useSelector((state) => state.commonstore.supportPopUp);
+
 	return (
 		<aside
 			ref={sidebar}
@@ -105,14 +111,15 @@ const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 						</div>
 
 						<div className='mt-32 lg:mt-26 pt-28'>
-							<NavLink
-								to="/pixplay/admin-home"
-								className={`text-xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${pathname.includes('admin-home') && 'bg-graydark dark:bg-meta-4'
+							<p
+								// to="/pixplay/admin-home"
+								onClick={() => dispatch(setSupportPopUp(true))}
+								className={`cursor-pointer text-xl group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-blue-300 hover:text-blue-800 dark:hover:bg-meta-4 ${supportPopUp && ''
 									}`}
 							>
 								<FaCircleRadiation size={24} color='white' />
 								Support
-							</NavLink>
+							</p>
 						</div>
 						<div className='my-4'>
 							<NavLink

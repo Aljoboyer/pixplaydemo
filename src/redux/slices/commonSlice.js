@@ -5,7 +5,8 @@ export const commonSlice = createSlice({
   name: 'commonstoreslice',
   initialState: {
     settingsCurrentTab: 0,
-    sidebarOpen: false
+    sidebarOpen: false,
+    supportPopUp: false
   },
   reducers: {
     setSettingsCurrentTab: (state, action) => {
@@ -16,10 +17,14 @@ export const commonSlice = createSlice({
       state.sidebarOpen = action.payload  ;
     },
 
+    setSupportPopUp: (state, action) => {
+      state.supportPopUp = action.payload  ;
+    },
+
   },
 });
 
-export const {setSettingsCurrentTab, setSidebarOpen} =
+export const {setSettingsCurrentTab, setSidebarOpen, setSupportPopUp} =
   commonSlice.actions;
 
 export const commonSliceReducer = commonSlice.reducer;

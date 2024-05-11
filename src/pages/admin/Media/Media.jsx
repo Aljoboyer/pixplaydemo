@@ -39,6 +39,10 @@ const Media = () => {
   },[])
 
 
+  const currentTabHandler = (tabName) => {
+    setCurrentTab(tabName)
+  }
+
   return (
     <Layout noTopPadding={true}>
         {/* <h1 className='text-center text-3xl font-bold'>Media Coming Soon</h1> */}
@@ -85,7 +89,7 @@ const Media = () => {
           }
         <BottomTab
           currentTab={currentTab}
-          setCurrentTab={setCurrentTab}
+          setCurrentTab={currentTabHandler}
           tabData={tabData}
         />
     </Layout>

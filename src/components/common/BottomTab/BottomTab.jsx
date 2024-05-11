@@ -9,7 +9,7 @@ const BottomTab = ({tabData, currentTab, setCurrentTab}) => {
                 tabData?.map((tab, index) => (
                     <div className={index !== 0 && 'ms-4'}>
                         <button 
-                        onClick={() => setCurrentTab('All')}
+                        onClick={() => setCurrentTab(tab)}
                         className={` font-bold px-2 md:px-4 text-sm md:text-base py-2 border border-1 border-[#0359d2] rounded ${currentTab == tab ? 'bg-[#1ED2FC] text-white' : 'text-[#0359d2]'}`}>{tab}</button>
                     </div>
                 ))

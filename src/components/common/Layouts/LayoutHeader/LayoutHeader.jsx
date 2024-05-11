@@ -4,6 +4,9 @@ import SidebarToggleButton from '../LayoutSidebar/SidebarToggleButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSidebarOpen } from '../../../../redux/slices/commonSlice';
 import { IoNotifications } from "react-icons/io5";
+import { IoMdLogOut } from "react-icons/io";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { CgProfile } from "react-icons/cg";
 
 const LayoutHeader = (props) => {
 	const navigate = useNavigate()
@@ -27,12 +30,18 @@ const LayoutHeader = (props) => {
 						onClick={(e) => handleSidebarToggle(e)}
 					/>
 				</div>
-					<div className='ms-auto' onClick={() => setDropdownOpen(!dropdownOpen)}>
+					<div className='ms-auto' >
 					<IoNotifications color='#1199EE' size={40}/>
 					</div>
-				<div></div>
+				<div className='ms-2'>
+					<button onClick={() => setDropdownOpen(!dropdownOpen)} className='bg-gray-200 px-4 py-2 rounded flex flex-row items-center'>
+						<p className='font-bold text-base md:text-xl'>Profile</p> 
+						<CgProfile size={28} className='mx-2' />
+						<IoMdArrowDropdown size={20}/>
+					</button>
+				</div>
 
-				{/* <div className="flex items-center gap-3 2xsm:gap-7">
+				<div className="flex items-center gap-3 2xsm:gap-7">
 					<div className="relative">
 						<div
 							className={`absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${dropdownOpen === true ? 'block' : 'hidden'
@@ -43,14 +52,14 @@ const LayoutHeader = (props) => {
 									localStorage.removeItem('token');
 									navigate('/')
 								}}
-								className="cursor-pointer flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+								className="cursor-pointer flex items-center gap-3.5 py-2 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
 							>
 							<IoMdLogOut color='black' size={20}/>
 								Logout
 							</p>
 						</div>
 					</div>
-				</div> */}
+				</div>
 			</div>
 		</header>
 	);

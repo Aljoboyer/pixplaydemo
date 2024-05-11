@@ -11,7 +11,9 @@ const Studio = () => {
     setCurrentTab('Playlist')
   },[])
 
-
+  const currentTabHandler = (tabName) => {
+    setCurrentTab(tabName)
+  }
   return (
     <Layout noTopPadding={true}>
          <div className='w-full xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-col sm:flex sm:flex-col justify-between items-center sticky top-16 z-999 bg-white  h-[90px] px-4'>
@@ -37,7 +39,7 @@ const Studio = () => {
         </div>
         <BottomTab
           currentTab={currentTab}
-          setCurrentTab={setCurrentTab}
+          setCurrentTab={currentTabHandler}
           tabData={tabData}
         />
     </Layout>

@@ -36,13 +36,16 @@ const MediaList = ({mediaDeleteHandler, mediaViewHandler}) => {
                             <MediaInfo/>
                       </td>
                       <td className='px-6 text-center py-2 italic text-gray-500'>
-                          Image
+                          Image 
                       </td>
                       <td className='px-6 text-center py-2 italic text-gray-500'>
                           9KB
                       </td>
                       <td className='w-[300px] text-center py-2'>
-                        <MdOutlineDelete onClick={mediaDeleteHandler} color='red' className='' size={24}/>
+                        <MdOutlineDelete onClick={(e) => {
+                             e.stopPropagation();
+                             mediaDeleteHandler()
+                        }} color='red' className='' size={24}/>
                       </td>
                   </tr>
                     ))

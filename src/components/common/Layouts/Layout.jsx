@@ -4,7 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import LayoutSidebar from './LayoutSidebar/LayoutSidebar';
 import SettingsHeader from '../Headers/SettingsHeader';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSidebarOpen } from '../../../redux/slices/commonSlice';
+import { setSidebarOpen, setSupportPopUp } from '../../../redux/slices/commonSlice';
+import SupportPopUp from '../../admin/support/SupportPopUp';
 // import { ToastContainer } from 'react-toastify';
 // import "react-toastify/dist/ReactToastify.css";
 
@@ -25,12 +26,17 @@ const Layout = ({ children , noTopPadding = false}) => {
 	// console.log('Pathname =', pathname)
 
 	const sidebarOpen = useSelector((state) => state.commonstore.sidebarOpen);
+	const supportPopUp = useSelector((state) => state.commonstore.supportPopUp);
 
 
 	const setSidebarOpenHandler = (sidebarShow) => {
 		dispatch(setSidebarOpen(sidebarShow))
 	}
 	
+	const supportPopUpClose = () => {
+		dispatch(setSupportPopUp(false))
+	}
+ 
 	return (
 		<div className="">
 			<div className="flex h-screen overflow-hidden">
@@ -47,6 +53,7 @@ const Layout = ({ children , noTopPadding = false}) => {
 							{/* <ToastContainer/> */}
 							{children}
 						</div>
+						<SupportPopUp  visible={supportPopUp} onClose={supportPopUpClose}/>
 					</main>
 				</div>
 			</div>
