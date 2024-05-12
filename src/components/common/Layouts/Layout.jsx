@@ -4,8 +4,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import LayoutSidebar from './LayoutSidebar/LayoutSidebar';
 import SettingsHeader from '../Headers/SettingsHeader';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSidebarOpen, setSupportPopUp } from '../../../redux/slices/commonSlice';
+import { setPixplayHubPopUp, setSidebarOpen, setSupportPopUp } from '../../../redux/slices/commonSlice';
 import SupportPopUp from '../../admin/support/SupportPopUp';
+import PixplayHubpopUp from '../../admin/pixplayHub/PixplayHubpopUp';
 // import { ToastContainer } from 'react-toastify';
 // import "react-toastify/dist/ReactToastify.css";
 
@@ -27,7 +28,7 @@ const Layout = ({ children , noTopPadding = false}) => {
 
 	const sidebarOpen = useSelector((state) => state.commonstore.sidebarOpen);
 	const supportPopUp = useSelector((state) => state.commonstore.supportPopUp);
-
+	const pixplayHubPopUp = useSelector((state) => state.commonstore.pixplayHubPopUp);
 
 	const setSidebarOpenHandler = (sidebarShow) => {
 		dispatch(setSidebarOpen(sidebarShow))
@@ -35,6 +36,10 @@ const Layout = ({ children , noTopPadding = false}) => {
 	
 	const supportPopUpClose = () => {
 		dispatch(setSupportPopUp(false))
+	}
+
+	const pixplayHubPopUpClose = () => {
+		dispatch(setPixplayHubPopUp(false))
 	}
  
 	return (
@@ -54,6 +59,7 @@ const Layout = ({ children , noTopPadding = false}) => {
 							{children}
 						</div>
 						<SupportPopUp  visible={supportPopUp} onClose={supportPopUpClose}/>
+						<PixplayHubpopUp visible={pixplayHubPopUp} onClose={pixplayHubPopUpClose} />
 					</main>
 				</div>
 			</div>

@@ -6,7 +6,8 @@ export const commonSlice = createSlice({
   initialState: {
     settingsCurrentTab: 0,
     sidebarOpen: false,
-    supportPopUp: false
+    supportPopUp: false,
+    pixplayHubPopUp: false,
   },
   reducers: {
     setSettingsCurrentTab: (state, action) => {
@@ -21,10 +22,14 @@ export const commonSlice = createSlice({
       state.supportPopUp = action.payload  ;
     },
 
+    setPixplayHubPopUp: (state, action) => {
+      state.pixplayHubPopUp = action.payload  ;
+    },
+
   },
 });
 
-export const {setSettingsCurrentTab, setSidebarOpen, setSupportPopUp} =
+export const {setSettingsCurrentTab, setSidebarOpen, setSupportPopUp, setPixplayHubPopUp} =
   commonSlice.actions;
 
 export const commonSliceReducer = commonSlice.reducer;
