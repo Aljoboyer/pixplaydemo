@@ -144,7 +144,7 @@ const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 							</NavLink>
 						</div>
 						
-						{/* <div className=''>
+						<div className=''>
 							<p
 								// to="/pixplay/admin-home"
 								onClick={() => dispatch(setPixplayHubPopUp(true))}
@@ -153,7 +153,7 @@ const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 								Pixplay Hub
 								<LiaLaptopSolid size={24} color='#1199EE' />
 							</p>
-						</div> */}
+						</div>
 
 					</div>
 				</nav>
