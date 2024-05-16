@@ -7,11 +7,14 @@ import AdminHome from './pages/admin/AdminHome/AdminHome';
 import Settings from './pages/admin/Settings/Settings';
 import Media from './pages/admin/Media/Media';
 import Studio from './pages/admin/Studio/Studio';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
   return (
     <main className="w-full">
+       <ToastContainer/>
       <Router>
         <Routes>
           <Route path="/" element={<LandingHome />} />
