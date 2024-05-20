@@ -10,9 +10,18 @@ const authApi = api.injectEndpoints({
       }),
     //   invalidatesTags: [''],
     }),
+    logIn: builder.mutation({
+      query: (data ) => ({
+        url: 'merchant/login',
+        method: 'POST',
+        body: data,
+      }),
+    //   invalidatesTags: [''],
+    }),
   }),
 });
 
 export const {
   useSignUpMutation,
+  useLogInMutation,
 } = authApi;

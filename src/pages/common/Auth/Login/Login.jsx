@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
 import PlaceHolderImg from '../../../../assets/image/placeholder-image.webp';
 import { useNavigate } from 'react-router-dom';
-import { emailRegex, passwordRegex } from '../../../../helper/regexData';
+import { passwordRegex } from '../../../../helper/regexData';
+import { toast } from 'react-toastify';
+import { useLogInMutation } from '../../../../redux/features/authApi';
 
 const Login = () => {
   const navigate = useNavigate()
-  const [loginData, setLoginData] = useState({email: '', password: '', phone: '', otp: ''})
+  const [loginData, setLoginData] = useState({email: '', password: ''})
   const [loginErr, setLoginErr] = useState({
-    emailErr: '', passwordErr: '',
-    phoneErr: '', otpErr: ''
+    emailErr: '', passwordErr: ''
   })
+  const [loading, setLoading] = useState(false)
+  const [userLogin, { }] = useLogInMutation();
 
   const validationHandler = () => {
     // console.log('clicked')
@@ -42,10 +45,73 @@ const Login = () => {
     }
   }
 
-  const loginHandler = () => {
-    // console.log('validation success')
-    navigate('/dashboard/admin-home')
+  const loginHandler = async () => {
+    setLoading(true)
+  
+    let response = await userLogin(loginData);
+
+    console.log(response)
+
+    if(response?.data?.message == "Logged-in successfully!"){
+      localStorage.setItem('pixplayToken', response?.data?.token)
+
+        toast.success('Logged-in successfully!', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            onOpen: () => {
+                setLoading(false)
+                navigate('/dashboard/admin-home')
+            },
+            onClose: () => {
+            },
+            });
+    }
+    else if(response?.data?.success == 0 && response?.data?.data == 'User not exists, Please signup!'){
+      setLoginErr({emailErr: 'User not exists, Please signup!'})
+        toast.error('Login Failed', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            onOpen: () => {
+                setLoading(false)
+                
+            },
+            onClose: () => {
+            },
+            });
+    }
+    else if(response?.data?.success == 0 && response?.data?.data == 'Password is wrong or invalid!'){
+      setLoginErr({passwordErr: 'Password is wrong or invalid'})
+        toast.error('Login Failed', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            onOpen: () => {
+                setLoading(false)
+                
+            },
+            onClose: () => {
+            },
+            });
+    }
   }
+
 
   return (
     <div className='w-full h-fit lg:h-screen landing_home_main_container xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-col sm:flex sm:flex-col '>
@@ -94,7 +160,9 @@ const Login = () => {
                        }
                       </div>
                       
-                      <button onClick={validationHandler} className='font-bold bg-white px-5 py-2 ms-24 rounded mt-7 '>Login</button>
+                     {
+                      loading ?  <button className='font-bold bg-white px-5 py-2 ms-24 rounded mt-7 '>Loading...</button> :  <button onClick={validationHandler} className='font-bold bg-white px-5 py-2 ms-24 rounded mt-7 '>Login</button>
+                     }
                 </div>
 
             </div>

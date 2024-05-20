@@ -7,10 +7,18 @@ import { IoNotifications } from "react-icons/io5";
 import { IoMdLogOut } from "react-icons/io";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
+import { useUserDataQuery } from '../../../../redux/features/userApi';
 
 const LayoutHeader = (props) => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+	const accessToken = localStorage.getItem('pixplayToken')
+	const credentials = {accessToken: accessToken}
+	const {data: userProfile} = useUserDataQuery(credentials, {
+		refetchOnMountOrArgChange: true,
+	  });
+	
+	// console.log('userProfile ====>', userProfile)
 
 	const sidebarOpen = useSelector((state) => state.commonstore.sidebarOpen);
 
@@ -35,7 +43,7 @@ const LayoutHeader = (props) => {
 					</div>
 				<div className='ms-2'>
 					<button onClick={() => setDropdownOpen(!dropdownOpen)} className='bg-gray-200 px-4 py-2 rounded flex flex-row items-center'>
-						<p className='font-bold text-base md:text-xl'>Profile</p> 
+						<p className='font-bold text-base md:text-xl'>{userProfile?.data?.merchant?.merchantName}</p> 
 						<CgProfile size={28} className='mx-2' />
 						<IoMdArrowDropdown size={20}/>
 					</button>
@@ -49,7 +57,7 @@ const LayoutHeader = (props) => {
 						>
 							<p
 								onClick={() => {
-									localStorage.removeItem('token');
+									localStorage.removeItem('pixplayToken');
 									navigate('/')
 								}}
 								className="cursor-pointer flex items-center gap-3.5 py-2 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
