@@ -13,10 +13,22 @@ const userApi = api.injectEndpoints({
       }),
       providesTags: ['userinfo'],
     }),
-
+    updatePassword: builder.mutation({
+      query: (data ) => ({
+        url: 'merchant/updatePassword',
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${data?.accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: data?.password,
+      }),
+      // invalidatesTags: ['userinfo'],
+    }),
   }),
 });
 
 export const {
   useUserDataQuery,
+  useUpdatePasswordMutation
 } = userApi;

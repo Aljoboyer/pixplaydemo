@@ -34,7 +34,7 @@ const SignUp = () => {
         isValid = false
     }
 
-    if(!signUpData?.password && !signUpData?.reEnterPassword){
+    if(!signUpData?.password || !signUpData?.reEnterPassword){
         setPasswordErr('Password is required')
         isValid = false
     }

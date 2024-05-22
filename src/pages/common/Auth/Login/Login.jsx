@@ -50,7 +50,7 @@ const Login = () => {
   
     let response = await userLogin(loginData);
 
-    console.log(response)
+    console.log("response ===>", response)
 
     if(response?.data?.message == "Logged-in successfully!"){
       localStorage.setItem('pixplayToken', response?.data?.token)
