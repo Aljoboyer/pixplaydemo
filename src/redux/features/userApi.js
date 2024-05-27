@@ -13,6 +13,7 @@ const userApi = api.injectEndpoints({
       }),
       providesTags: ['userinfo'],
     }),
+
     updatePassword: builder.mutation({
       query: (data ) => ({
         url: 'merchant/updatePassword',
@@ -25,10 +26,25 @@ const userApi = api.injectEndpoints({
       }),
       // invalidatesTags: ['userinfo'],
     }),
+
+    profileUpdate: builder.mutation({
+      query: (data ) => ({
+        url: 'merchant/profile',
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${data?.accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: data?.password,
+      }),
+      // invalidatesTags: ['userinfo'],
+    }),
+
   }),
 });
 
 export const {
   useUserDataQuery,
-  useUpdatePasswordMutation
+  useUpdatePasswordMutation,
+  useProfileUpdateMutation
 } = userApi;

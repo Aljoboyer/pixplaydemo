@@ -3,7 +3,7 @@ import SettingsVector from '../../../assets/image/settingsVector.jpg';
 import ImageUpload from '../../common/ImageUpload/ImageUpload';
 import { MultiSelect } from '../../common/MultiSelect/MultiSelect';
 import { departmentOptions } from '../../../helper/constantData';
-import { passwordRegex } from '../../../helper/regexData';
+import { nameRegex, passwordRegex } from '../../../helper/regexData';
 import { useUpdatePasswordMutation } from '../../../redux/features/userApi';
 
 const PersonalSection = () => {  
@@ -13,6 +13,14 @@ const PersonalSection = () => {
     const [oldPassword, setOldPassword] = useState("")
     const [passwordErr, setPasswordErr] = useState('');
     const [passwordUpdate, { }] = useUpdatePasswordMutation();
+    const [profileData, setProfileData] = useState({
+        firstName: '', lastName: '',
+        mobile: '',
+    })
+    const [nameErr, setNameErr] = useState('')
+    const [phoneErr, setPhoneErr] = useState('')
+    const [passwordLoading, setPasswordLoading] = useState(false);
+    const [profileLoading, setProfileLoading] = useState(false)
 
     const passwordSaveHandler = async () => {
         let isValid = true
@@ -27,10 +35,40 @@ const PersonalSection = () => {
             return
         }
         if(isValid){
+            setPasswordLoading(true)
             const requestObj = {password: newPassword, accessToken}
             const response = await passwordUpdate(requestObj)
         }
     }
+
+    const profileDataSaveHandler = () => {
+        let isValid  = true;
+    
+        if(!profileData?.firstName || !profileData?.lastName){
+            setNameErr('First name and Last name both required')
+            isValid = false
+        }
+        if (nameRegex.test(profileData?.firstName) === false || nameRegex.test(profileData?.lastName) === false  || profileData?.firstName.trim().length === 0 || profileData?.lastName.trim().length === 0) {
+            setNameErr('Please write proper name without special character and number')
+            isValid = false
+        }
+       
+        if (!(/^\d+$/).test(profileData.mobile)) {
+            setPhoneErr('Please input a valid phone number')
+            isValid = false
+          }
+          if (profileData.mobile?.length !== 10) {
+            setPhoneErr('Please input a 10 digit phone number')
+            isValid = false
+            return;
+          }
+        if(isValid){
+            setProfileLoading(true)
+            console.log('Profile data ===>', profileData, selectedDepartement)
+            setProfileLoading(false)
+        }
+       }
+    
   return (
    <div   className='flex flex-row justify-evenly w-full'>
         <div className='w-full lg:w-1/2 bg-[#EBEEF0] p-4 rounded-md'>
@@ -46,16 +84,43 @@ const PersonalSection = () => {
 
                   <div>
                       <div className='mt-2 lg:mt-11 ms-0 lg:ms-4'>
-                          <input className='w-[1/2] bg-[#DDDDDD] rounded-md px-4 py-2' placeholder='First Name' type="text" />
-                          <input className='w-[1/2] bg-[#DDDDDD] rounded-md px-4 py-2 ms-0 sm:ms-2 md:ms-4 mt-4 md:mt-0' placeholder='Last Name' type="text" />
+                          <input 
+                           onChange={(e) => {
+                            setProfileData({...profileData, firstName: e.target.value})
+                            setNameErr('')
+                          }} className='w-[1/2] bg-[#DDDDDD] rounded-md px-4 py-2' placeholder='First Name' type="text" />
+                          <input
+                          onChange={(e) => {
+                            setProfileData({...profileData, lastName: e.target.value})
+                            setNameErr('')
+                          }}
+                          className='w-[1/2] bg-[#DDDDDD] rounded-md px-4 py-2 ms-0 sm:ms-2 md:ms-4 mt-4 md:mt-0' placeholder='Last Name' type="text" />
+
+                        {
+                        nameErr && <div className=' mt-2 '>
+                       <p className='text-[12px] font-bold text-red-500 '>{nameErr}</p>
+                       </div> 
+                       }
                       </div>
 
                       <div className='mt-4 ms-0 lg:ms-4'>
-                          <input className='w-full bg-[#DDDDDD] rounded-md px-4 py-2' placeholder='Your Email' type="text" />
+                          <input 
+                          disabled
+                          className='w-full bg-[#DDDDDD] rounded-md px-4 py-2' placeholder='Your Email' type="text" />
                       </div>
 
                       <div className='mt-4 ms-0 lg:ms-4'>
-                          <input className='w-full bg-[#DDDDDD] rounded-md px-4 py-2' placeholder='Your Phone' type="text" />
+                          <input 
+                           onChange={(e) => {
+                            setProfileData({...profileData, mobile: e.target.value})
+                            setPhoneErr('')
+                          }}
+                          className='w-full bg-[#DDDDDD] rounded-md px-4 py-2' placeholder='Your Phone' type="text" />
+                        {
+                         phoneErr && <div className=' mt-2'>
+                        <p className='text-[12px] font-bold text-red-500'>{phoneErr}</p>
+                        </div> 
+                        }
                       </div>
 
                       <div className='mt-4 ms-0 lg:ms-4'>
@@ -69,7 +134,7 @@ const PersonalSection = () => {
                       </div>
 
                       <div className='flex flex-row justify-center mt-4 ps-0 lg:ps-4 w-full'>
-                      <button className='w-full  bg-black text-white font-bold py-2 rounded-md'>SAVE</button>
+                      <button onClick={profileDataSaveHandler} className='w-full  bg-black text-white font-bold py-2 rounded-md'>SAVE</button>
                       </div>
                   </div>
               </div>
@@ -102,6 +167,7 @@ const PersonalSection = () => {
                 </div>
             </div>
         </div>
+
         <div className='hidden lg:block w-full lg:w-1/2'>
             <img className='w-full ' src={SettingsVector} alt="" />
         </div>

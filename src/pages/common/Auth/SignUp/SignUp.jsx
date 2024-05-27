@@ -46,7 +46,7 @@ const SignUp = () => {
         setPasswordErr('Password should match with re-enter password')
         isValid = false
     }
-    if(!signUpData?.company || !signUpData?.company){
+    if(!signUpData?.company){
         setCompanyErr('Company name required')
         isValid = false
     }
@@ -137,12 +137,11 @@ const SignUp = () => {
                           }}
                           className='outline-none border-0 rounded ms-0 md:ms-2 lg:ms-17 xl:ms-4 p-2 mt-4 xl:mt-0 w-full md:w-fit lg:w-2/6' placeholder='Last Name'/>
 
-                          {
+                        {
                         nameErr && <div className=' mt-2 ms-16'>
                        <p className='text-[12px] font-bold text-red-500 ms-0 md:ms-11  text-start'>{nameErr}</p>
                        </div> 
                        }
-
                       </div>
                      
                       <div className='my-7 w-full'>
