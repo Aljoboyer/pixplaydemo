@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarToggleButton from '../Layouts/LayoutSidebar/SidebarToggleButton';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,12 +7,25 @@ import { IoNotifications } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { IoMdLogOut } from "react-icons/io";
+import { useUserDataQuery } from '../../../redux/features/userApi';
 
 const SettingsHeader = (props) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch()
 	const settingsTabName = useSelector((state) => state.commonstore.settingsCurrentTab);
 	const sidebarOpen = useSelector((state) => state.commonstore.sidebarOpen);
+
+	const accessToken = localStorage.getItem('pixplayToken')
+	const credentials = {accessToken: accessToken}
+	const {data: userProfile, refetch} = useUserDataQuery(credentials, {
+		refetchOnMountOrArgChange: true,
+	  });
+	
+	console.log('userProfile Header ====>', userProfile)
+	
+	useEffect(() => {
+		refetch()
+	},[])
 
 	const handleSidebarToggle = (e) => {
 		e.stopPropagation();
@@ -63,10 +76,10 @@ const SettingsHeader = (props) => {
 
 				<div className='ms-2'>
 					<button onClick={() => setDropdownOpen(!dropdownOpen)} className='bg-gray-200 px-4 py-2 rounded flex flex-row items-center'>
-						<p className='font-bold text-base md:text-xl'>Profile</p> 
+					<p className='font-bold text-base md:text-xl'>{userProfile?.data?.merchant?.merchantName}</p> 
 						<CgProfile size={28} className='mx-2' />
 						<IoMdArrowDropdown size={20}/>
-					</button>
+					</button> 
 				</div>
 				
 				<div className="flex items-center gap-3 2xsm:gap-7">

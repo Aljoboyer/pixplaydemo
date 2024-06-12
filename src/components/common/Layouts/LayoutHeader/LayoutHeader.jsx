@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarToggleButton from '../LayoutSidebar/SidebarToggleButton';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,12 +14,15 @@ const LayoutHeader = (props) => {
 	const dispatch = useDispatch()
 	const accessToken = localStorage.getItem('pixplayToken')
 	const credentials = {accessToken: accessToken}
-	const {data: userProfile} = useUserDataQuery(credentials, {
+	const {data: userProfile, refetch} = useUserDataQuery(credentials, {
 		refetchOnMountOrArgChange: true,
 	  });
 	
-	// console.log('userProfile ====>', userProfile)
-
+	console.log('userProfile Header ====>', userProfile)
+	
+	useEffect(() => {
+		refetch()
+	},[])
 	const sidebarOpen = useSelector((state) => state.commonstore.sidebarOpen);
 
 	const handleSidebarToggle = (e) => {

@@ -10,6 +10,7 @@ import { IoPerson } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
 import { setPixplayHubPopUp, setSupportPopUp } from '../../../../redux/slices/commonSlice';
 import { LiaLaptopSolid } from "react-icons/lia";
+import { useUserDataQuery } from '../../../../redux/features/userApi';
 
 const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 	const location = useLocation();
@@ -19,6 +20,18 @@ const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
 	const trigger = useRef(null);
 	const sidebar = useRef(null);
+
+	const accessToken = localStorage.getItem('pixplayToken')
+	const credentials = {accessToken: accessToken}
+	const {data: userProfile, refetch} = useUserDataQuery(credentials, {
+		refetchOnMountOrArgChange: true,
+	  });
+	
+	console.log('userProfile Sidebar====>', userProfile)
+	
+	useEffect(() => {
+		refetch()
+	},[])
 
 	const storedSidebarExpanded = localStorage.getItem('sidebar-expanded');
 	const [sidebarExpanded, setSidebarExpanded] = useState(

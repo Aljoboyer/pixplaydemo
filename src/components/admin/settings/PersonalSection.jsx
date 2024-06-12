@@ -5,6 +5,7 @@ import { MultiSelect } from '../../common/MultiSelect/MultiSelect';
 import { departmentOptions } from '../../../helper/constantData';
 import { nameRegex, passwordRegex } from '../../../helper/regexData';
 import { useUpdatePasswordMutation } from '../../../redux/features/userApi';
+import { toast } from 'react-toastify';
 
 const PersonalSection = () => {  
     const accessToken = localStorage.getItem('pixplayToken')
@@ -29,6 +30,11 @@ const PersonalSection = () => {
             isValid = false
             return
         }
+        if(newPassword == oldPassword){
+            setPasswordErr('New Password & Old Password cannot be same')
+            isValid = false
+            return
+        }
         if(!passwordRegex.test(newPassword) || !passwordRegex.test(oldPassword)){
             setPasswordErr( 'Password must be minimum 8th character long with one lowercase , uppercase letters, At least one Number & one special character')
             isValid = false
@@ -36,8 +42,29 @@ const PersonalSection = () => {
         }
         if(isValid){
             setPasswordLoading(true)
-            const requestObj = {password: newPassword, accessToken}
+            const requestObj = { password: {password: newPassword}, accessToken}
             const response = await passwordUpdate(requestObj)
+
+            if(response?.data?.success == 1){
+                toast.success('password updated successfully', {
+                    position: "top-right",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    onOpen: () => {
+                        setPasswordLoading(false)
+                        setNewPassword('')
+                        setOldPassword('')
+                    },
+                    onClose: () => {
+                    },
+                    });
+            }
+            console.log('Response ==>', response)
         }
     }
 
@@ -57,11 +84,11 @@ const PersonalSection = () => {
             setPhoneErr('Please input a valid phone number')
             isValid = false
           }
-          if (profileData.mobile?.length !== 10) {
-            setPhoneErr('Please input a 10 digit phone number')
-            isValid = false
-            return;
-          }
+        if (profileData.mobile?.length !== 10) {
+        setPhoneErr('Please input a 10 digit phone number')
+        isValid = false
+        return;
+        }
         if(isValid){
             setProfileLoading(true)
             console.log('Profile data ===>', profileData, selectedDepartement)
@@ -144,14 +171,14 @@ const PersonalSection = () => {
                 <div className='mt-4  w-full xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-col sm:flex sm:flex-col'>
                    <div className='w-full lg:w-1/2'>
                         <p className='font-bold '>Old Password</p>
-                        <input type='password' onChange={(e) => {
+                        <input value={oldPassword} type='password' onChange={(e) => {
                             setOldPassword(e.target.value)
                             setPasswordErr('')
                         }} className='w-full bg-[#DDDDDD] rounded-md px-4 py-2 mt-2' placeholder='Enter old password'/>
                    </div>
                    <div className='w-full lg:w-1/2 ms-0 lg:ms-2 mt-4 lg:mt-0'>
                         <p className='font-bold '>New Password</p>
-                        <input type='password' onChange={(e) => {
+                        <input value={newPassword} type='password' onChange={(e) => {
                             setNewPassword(e.target.value)
                             setPasswordErr('')
                         }} className='w-full bg-[#DDDDDD] rounded-md px-4 py-2 mt-2' placeholder='Enter new password'  />
@@ -163,7 +190,10 @@ const PersonalSection = () => {
                 </div> 
                 }
                 <div className='flex flex-row justify-center mt-4  w-full'>
-                    <button onClick={() => passwordSaveHandler()} className='w-full  bg-black text-white font-bold py-2 rounded-md'>SAVE</button>
+                    {
+                        passwordLoading ?  <button className='w-full  bg-black text-white font-bold py-2 rounded-md'>Loading...</button> 
+                        : <button onClick={() => passwordSaveHandler()} className='w-full  bg-black text-white font-bold py-2 rounded-md'>SAVE</button>
+                    }
                 </div>
             </div>
         </div>
