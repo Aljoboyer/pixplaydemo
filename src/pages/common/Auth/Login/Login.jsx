@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PlaceHolderImg from '../../../../assets/image/placeholder-image.webp';
 import { useNavigate } from 'react-router-dom';
 import { passwordRegex } from '../../../../helper/regexData';
@@ -111,6 +111,14 @@ const Login = () => {
             });
     }
   }
+
+  const accessToken = localStorage.getItem('pixplayToken')
+
+  useEffect(() => {
+    if(accessToken){
+      navigate('/dashboard/admin-home')
+    }
+  },[accessToken])
 
 
   return (

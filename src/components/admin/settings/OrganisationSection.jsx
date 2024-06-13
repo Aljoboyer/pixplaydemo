@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SettingsVector from '../../../assets/image/settingsVector.jpg';
 import { nameRegex } from '../../../helper/regexData';
+import { useProfileUpdateMutation, useUserDataQuery } from '../../../redux/features/userApi';
+import { toast } from 'react-toastify';
 
 const OrganisationSection = () => {
+  const accessToken = localStorage.getItem('pixplayToken')
+  const credentials = {accessToken: accessToken}
   const [organisationData, setOrganisationData] = useState({
     organizationName: '', email: '',
     contact: '', address: ''
@@ -10,8 +14,19 @@ const OrganisationSection = () => {
   const [organizationNameErr, setOrganizationNameErr] = useState('');
   const [emailErr, setEmailErr] = useState('')
   const [contactErr, setContactErr] = useState('')
-  
-  const orgUpdateHandler = () => {
+  const [updateProfile, { }] = useProfileUpdateMutation();
+  const {data: userProfile, refetch} = useUserDataQuery(credentials, {
+		refetchOnMountOrArgChange: true,
+	  });
+  const [orgLoading, setOrgLoading] = useState(false);
+
+    useEffect(() => {
+      if(userProfile?.data){
+        setOrganisationData({...userProfile?.data?.organization})
+      }
+    },[userProfile])
+
+  const orgUpdateHandler = async() => {
     let isValid = true;
 
     if(!organisationData?.organizationName ){
@@ -33,6 +48,31 @@ const OrganisationSection = () => {
     }
 
     if(isValid){
+      setOrgLoading(true)
+      
+      const requestObj = {data: {organization: organisationData,  merchant: {...userProfile?.data?.merchant, merchantName: organisationData?.organizationName}}}
+
+      const updateResponse = await updateProfile({requestObj, accessToken})
+
+      if(updateResponse?.data?.success == 1){
+        toast.success('Merchant Organisation updated successfully!', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            onOpen: () => {
+                setOrgLoading(false)
+            },
+            onClose: () => {
+            },
+            });
+    }
+
+
       console.log('org data ======>>', organisationData)
     }
   }
@@ -46,6 +86,7 @@ const OrganisationSection = () => {
                       <div className='mt-2 lg:mt-11 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[130px]'>Organization Name</p>
                           <input
+                          defaultValue={organisationData?.organizationName}
                           onChange={(e) => {
                             setOrganisationData({...organisationData, organizationName: e.target.value})
                             setOrganizationNameErr('')
@@ -62,6 +103,7 @@ const OrganisationSection = () => {
                       <div className='mt-4 ms-0 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[130px]'>Email</p>
                           <input
+                          defaultValue={organisationData?.email}
                           onChange={(e) => {
                             setOrganisationData({...organisationData, email: e.target.value})
                             setEmailErr('')
@@ -77,6 +119,7 @@ const OrganisationSection = () => {
                       <div className='mt-4 ms-0 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[130px]'>Contact</p>
                           <input
+                          defaultValue={organisationData?.contact}
                           onChange={(e) => {
                             setOrganisationData({...organisationData, contact: e.target.value})
                             setContactErr('')
@@ -92,6 +135,7 @@ const OrganisationSection = () => {
                       <div className='mt-4 ms-0 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[130px]'>Address</p>
                           <input
+                          defaultValue={organisationData?.address}
                             onChange={(e) => {
                               setOrganisationData({...organisationData, address: e.target.value})
                             }}
@@ -99,7 +143,10 @@ const OrganisationSection = () => {
                       </div>
 
                       <div className='flex flex-row justify-center mt-4 ps-0 lg:ps-4 w-full'>
-                      <button onClick={orgUpdateHandler} className='w-full  bg-black text-white font-bold py-2 rounded-md'>SAVE</button>
+                        {
+                          orgLoading ?  <button className='w-full  bg-black text-white font-bold py-2 rounded-md'>Loading...</button>
+                          :  <button onClick={orgUpdateHandler} className='w-full  bg-black text-white font-bold py-2 rounded-md'>SAVE</button>
+                        }
                       </div>
                   </div>
               </div>
