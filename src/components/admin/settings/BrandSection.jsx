@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SettingsVector from '../../../assets/image/settingsVector.jpg';
 import { facebookRegex, googlePlusRegex, instagramRegex, twitterRegex } from '../../../helper/regexData';
+import { useProfileUpdateMutation, useUserDataQuery } from '../../../redux/features/userApi';
+import { toast } from 'react-toastify';
 
 const BrandSection = () => {
+  const accessToken = localStorage.getItem('pixplayToken')
   const [brandData, setBrandData] = useState({
     brandName: '', facebook: '',
     instagram: '', twitter: '', google: ''
@@ -12,12 +15,22 @@ const BrandSection = () => {
   const [instaErr, setInstaErr] = useState('')
   const [xErr, setXErr] = useState('')
   const [googleErr, setGoogleErr] = useState('')
-  
+  const credentials = {accessToken: accessToken}
+	const {data: userProfile, refetch} = useUserDataQuery(credentials, {
+		refetchOnMountOrArgChange: true,
+	  });
+  const [updateProfile, { }] = useProfileUpdateMutation();
+
   const validateLink = (link, regex) => {
     return regex.test(link);
   };
 
-  const brandUpdateHandler = () => {
+  useEffect(() => {
+    if(userProfile?.data){
+      setBrandData({...userProfile?.data?.brand})
+    }
+  },[userProfile])
+  const brandUpdateHandler = async() => {
     console.log('clicking')
     let isValid = true
 
@@ -43,11 +56,33 @@ const BrandSection = () => {
 
     if(isValid){
       setLoading(true)
-      console.log('validate ===>', brandData)
-      setLoading(false)
+      const requestObj = {data: {brand: brandData}}
+
+      // console.log('brandResponse ===>', requestObj)
+
+      const updateResponse = await updateProfile({requestObj, accessToken})
+      console.log('brandResponse ===>', updateResponse)
+
+      if(updateResponse?.data?.success == 1){
+        toast.success('Merchant brand updated successfully!', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            onOpen: () => {
+              setLoading(false)
+            },
+            onClose: () => {
+            },
+            });
+        }
     }
   }
-
+  console.log(userProfile)
 
   return (
    <div   className='flex flex-row justify-evenly w-full'>
@@ -58,6 +93,7 @@ const BrandSection = () => {
                       <div className='mt-2 lg:mt-11 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[100px]'>Brand Name</p>
                           <input 
+                          defaultValue={brandData?.brandName}
                            onChange={(e) => {
                             setBrandData({...brandData, brandName: e.target.value})
                           }}
@@ -73,7 +109,8 @@ const BrandSection = () => {
 
                       <div className='mt-4 ms-0 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[100px]'>Facebook</p>
-                          <input 
+                          <input
+                          defaultValue={brandData?.facebook} 
                           onChange={(e) => {
                             setBrandData({...brandData, facebook: e.target.value})
                             setFbErr('')
@@ -89,6 +126,7 @@ const BrandSection = () => {
                       <div className='mt-4 ms-0 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[100px]'>X</p>
                           <input
+                          defaultValue={brandData?.twitter} 
                           onChange={(e) => {
                             setBrandData({...brandData, twitter: e.target.value})
                             setXErr('')
@@ -104,6 +142,7 @@ const BrandSection = () => {
                       <div className='mt-4 ms-0 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[100px]'>Instagram</p>
                           <input
+                           defaultValue={brandData?.instagram} 
                           onChange={(e) => {
                             setBrandData({...brandData, instagram: e.target.value})
                             setInstaErr('')
@@ -120,6 +159,7 @@ const BrandSection = () => {
                       <div className='mt-4 ms-0 lg:ms-4 lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center'>
                         <p className='font-bold w-[100px]'>Google</p>
                           <input
+                          defaultValue={brandData?.google} 
                           onChange={(e) => {
                             setBrandData({...brandData, google: e.target.value})
                             setGoogleErr('')
@@ -134,7 +174,10 @@ const BrandSection = () => {
                         }
 
                       <div className='flex flex-row justify-center mt-4 ps-0 lg:ps-4 w-full'>
-                      <button onClick={brandUpdateHandler} className='w-full  bg-black text-white font-bold py-2 rounded-md'>SAVE</button>
+                        {
+                          loading ? <button className='w-full  bg-black text-white font-bold py-2 rounded-md'>Loading...</button>
+                          : <button onClick={brandUpdateHandler} className='w-full  bg-black text-white font-bold py-2 rounded-md cursor-pointer'>SAVE</button>
+                        }
                       </div>
                   </div>
               </div>

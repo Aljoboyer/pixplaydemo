@@ -35,9 +35,9 @@ const userApi = api.injectEndpoints({
           'Authorization': `Bearer ${data?.accessToken}`,
           'Content-Type': 'application/json',
         },
-        body: data?.password,
+        body: data?.requestObj,
       }),
-      // invalidatesTags: ['userinfo'],
+      invalidatesTags: ['userinfo'],
     }),
 
   }),

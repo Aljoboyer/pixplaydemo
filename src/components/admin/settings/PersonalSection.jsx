@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SettingsVector from '../../../assets/image/settingsVector.jpg';
 import ImageUpload from '../../common/ImageUpload/ImageUpload';
 import { MultiSelect } from '../../common/MultiSelect/MultiSelect';
 import { departmentOptions } from '../../../helper/constantData';
 import { nameRegex, passwordRegex } from '../../../helper/regexData';
-import { useUpdatePasswordMutation } from '../../../redux/features/userApi';
+import { useProfileUpdateMutation, useUpdatePasswordMutation, useUserDataQuery } from '../../../redux/features/userApi';
 import { toast } from 'react-toastify';
+import { jwtDecode } from "jwt-decode";
 
 const PersonalSection = () => {  
     const accessToken = localStorage.getItem('pixplayToken')
@@ -22,6 +23,19 @@ const PersonalSection = () => {
     const [phoneErr, setPhoneErr] = useState('')
     const [passwordLoading, setPasswordLoading] = useState(false);
     const [profileLoading, setProfileLoading] = useState(false)
+
+    const credentials = {accessToken: accessToken}
+	const {data: userProfile, refetch} = useUserDataQuery(credentials, {
+		refetchOnMountOrArgChange: true,
+	  });
+    const decodedToken = jwtDecode(accessToken);
+    const [updateProfile, { }] = useProfileUpdateMutation();
+
+    useEffect(() => {
+        if(userProfile?.data){
+          setProfileData({...userProfile?.data?.merchant})
+        }
+      },[userProfile])
 
     const passwordSaveHandler = async () => {
         let isValid = true
@@ -68,7 +82,7 @@ const PersonalSection = () => {
         }
     }
 
-    const profileDataSaveHandler = () => {
+    const profileDataSaveHandler = async () => {
         let isValid  = true;
     
         if(!profileData?.firstName || !profileData?.lastName){
@@ -90,12 +104,41 @@ const PersonalSection = () => {
         return;
         }
         if(isValid){
+            const departmentIdArray = selectedDepartement?.map((item) => {
+                const obj = {departmentId: item?.value}
+                return obj
+            })
             setProfileLoading(true)
-            console.log('Profile data ===>', profileData, selectedDepartement)
-            setProfileLoading(false)
+
+            const requestObj = {data: {merchant: profileData,  departments: departmentIdArray}}
+            console.log('Profile data ===>', requestObj)
+
+            const updateResponse = await updateProfile({requestObj, accessToken})
+
+            if(updateResponse?.data?.success == 1){
+                toast.success('Merchant profile updated successfully!', {
+                    position: "top-right",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    onOpen: () => {
+                        setProfileLoading(false)
+                    },
+                    onClose: () => {
+                    },
+                    });
+            }
+
+            console.log('Profile updateResponse ===>', updateResponse)
         }
        }
-    
+    // console.log(profileData)
+    // console.log(decodedToken)
+
   return (
    <div   className='flex flex-row justify-evenly w-full'>
         <div className='w-full lg:w-1/2 bg-[#EBEEF0] p-4 rounded-md'>
@@ -112,11 +155,13 @@ const PersonalSection = () => {
                   <div>
                       <div className='mt-2 lg:mt-11 ms-0 lg:ms-4'>
                           <input 
+                          defaultValue={profileData?.firstName}
                            onChange={(e) => {
                             setProfileData({...profileData, firstName: e.target.value})
                             setNameErr('')
                           }} className='w-[1/2] bg-[#DDDDDD] rounded-md px-4 py-2' placeholder='First Name' type="text" />
                           <input
+                           defaultValue={profileData?.lastName}
                           onChange={(e) => {
                             setProfileData({...profileData, lastName: e.target.value})
                             setNameErr('')
@@ -131,13 +176,15 @@ const PersonalSection = () => {
                       </div>
 
                       <div className='mt-4 ms-0 lg:ms-4'>
-                          <input 
+                          <input
+                            defaultValue={decodedToken?.email}
                           disabled
                           className='w-full bg-[#DDDDDD] rounded-md px-4 py-2' placeholder='Your Email' type="text" />
                       </div>
 
                       <div className='mt-4 ms-0 lg:ms-4'>
                           <input 
+                          defaultValue={profileData?.mobile}
                            onChange={(e) => {
                             setProfileData({...profileData, mobile: e.target.value})
                             setPhoneErr('')
@@ -161,7 +208,10 @@ const PersonalSection = () => {
                       </div>
 
                       <div className='flex flex-row justify-center mt-4 ps-0 lg:ps-4 w-full'>
-                      <button onClick={profileDataSaveHandler} className='w-full  bg-black text-white font-bold py-2 rounded-md'>SAVE</button>
+                        {
+                            profileLoading ?  <button className='w-full  bg-black text-white font-bold py-2 rounded-md'>Loading...</button> 
+                            :  <button onClick={profileDataSaveHandler} className='w-full  bg-black text-white font-bold py-2 rounded-md cursor-pointer'>SAVE</button>
+                        }
                       </div>
                   </div>
               </div>

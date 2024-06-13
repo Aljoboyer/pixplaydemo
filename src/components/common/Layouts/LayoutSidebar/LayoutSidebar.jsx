@@ -21,18 +21,6 @@ const LayoutSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 	const trigger = useRef(null);
 	const sidebar = useRef(null);
 
-	const accessToken = localStorage.getItem('pixplayToken')
-	const credentials = {accessToken: accessToken}
-	const {data: userProfile, refetch} = useUserDataQuery(credentials, {
-		refetchOnMountOrArgChange: true,
-	  });
-	
-	console.log('userProfile Sidebar====>', userProfile)
-	
-	useEffect(() => {
-		refetch()
-	},[])
-
 	const storedSidebarExpanded = localStorage.getItem('sidebar-expanded');
 	const [sidebarExpanded, setSidebarExpanded] = useState(
 		storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true'

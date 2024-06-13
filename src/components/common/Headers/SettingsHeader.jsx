@@ -21,7 +21,6 @@ const SettingsHeader = (props) => {
 		refetchOnMountOrArgChange: true,
 	  });
 	
-	console.log('userProfile Header ====>', userProfile)
 	
 	useEffect(() => {
 		refetch()
@@ -76,7 +75,7 @@ const SettingsHeader = (props) => {
 
 				<div className='ms-2'>
 					<button onClick={() => setDropdownOpen(!dropdownOpen)} className='bg-gray-200 px-4 py-2 rounded flex flex-row items-center'>
-					<p className='font-bold text-base md:text-xl'>{userProfile?.data?.merchant?.merchantName}</p> 
+					<p className='font-bold text-base md:text-xl'>{userProfile?.data?.merchant?.firstName}</p> 
 						<CgProfile size={28} className='mx-2' />
 						<IoMdArrowDropdown size={20}/>
 					</button> 
