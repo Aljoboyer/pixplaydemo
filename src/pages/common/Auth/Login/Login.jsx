@@ -112,15 +112,6 @@ const Login = () => {
     }
   }
 
-  const accessToken = localStorage.getItem('pixplayToken')
-
-  useEffect(() => {
-    if(accessToken){
-      navigate('/dashboard/admin-home')
-    }
-  },[accessToken])
-
-
   return (
     <div className='w-full h-fit lg:h-screen landing_home_main_container xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-col sm:flex sm:flex-col '>
         <div className='w-full lg:w-1/2 mx-auto lg:mx-0'>

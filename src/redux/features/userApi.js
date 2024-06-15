@@ -40,11 +40,24 @@ const userApi = api.injectEndpoints({
       invalidatesTags: ['userinfo'],
     }),
 
+    getDepartment: builder.query({
+      query: (credentials) =>({
+        url: 'merchant/department',
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${credentials?.accessToken}`,
+          'Content-Type': 'application/json',
+        },
+      }),
+      // providesTags: ['userinfo'],
+    }),
+
   }),
 });
 
 export const {
   useUserDataQuery,
   useUpdatePasswordMutation,
-  useProfileUpdateMutation
+  useProfileUpdateMutation,
+  useGetDepartmentQuery
 } = userApi;

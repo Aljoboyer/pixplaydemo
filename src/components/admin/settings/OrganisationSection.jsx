@@ -9,7 +9,7 @@ const OrganisationSection = () => {
   const credentials = {accessToken: accessToken}
   const [organisationData, setOrganisationData] = useState({
     organizationName: '', email: '',
-    contact: '', address: ''
+    contact: '', address: '', website: '',
   })
   const [organizationNameErr, setOrganizationNameErr] = useState('');
   const [emailErr, setEmailErr] = useState('')
@@ -22,13 +22,13 @@ const OrganisationSection = () => {
 
     useEffect(() => {
       if(userProfile?.data){
-        setOrganisationData({...userProfile?.data?.organization})
+        setOrganisationData({...userProfile?.data?.organization, organizationName: userProfile?.data?.merchant?.merchantName})
       }
     },[userProfile])
 
   const orgUpdateHandler = async() => {
     let isValid = true;
-
+    console.log(organisationData.contact?.length)
     if(!organisationData?.organizationName ){
       setOrganizationNameErr('organization name required')
       isValid = false
@@ -38,22 +38,28 @@ const OrganisationSection = () => {
       setOrganizationNameErr('Please write proper organization Name')
         isValid = false
     }
-    if(organisationData?.email && !organisationData?.email.match(/\S+@\S+\.\S+/)){
+    if(!organisationData?.email || !organisationData?.email.match(/\S+@\S+\.\S+/)){
       setEmailErr( 'Please input a valid email')
       isValid = false
     }
-    if (!(/^\d+$/).test(organisationData.contact) && organisationData.contact) {
+    if (!(/^\d+$/).test(organisationData.contact) || !organisationData.contact) {
       setContactErr('Please input a valid phone number')
       isValid = false
     }
-
+    if (organisationData.contact?.length !== 10) {
+      setContactErr('Please input a 10 digit phone number')
+      isValid = false
+      }
     if(isValid){
       setOrgLoading(true)
       
-      const requestObj = {data: {organization: organisationData,  merchant: {...userProfile?.data?.merchant, merchantName: organisationData?.organizationName}}}
+      const requestObj = {data: {organization: {...organisationData, website: "www.pixplay.com"},  merchant: {...userProfile?.data?.merchant, merchantName: organisationData?.organizationName}}}
+
+      console.log('org data ======>>', requestObj)
 
       const updateResponse = await updateProfile({requestObj, accessToken})
 
+      console.log('org upd res ===>>', updateResponse)
       if(updateResponse?.data?.success == 1){
         toast.success('Merchant Organisation updated successfully!', {
             position: "top-right",
@@ -71,12 +77,13 @@ const OrganisationSection = () => {
             },
             });
     }
-
-
-      console.log('org data ======>>', organisationData)
+    else{
+      setOrgLoading(false)
+    }
+     
     }
   }
-
+// console.log(organisationData.contact?.length)
   return (
    <div   className='flex flex-row justify-evenly w-full'>
         <div className='w-full lg:w-1/2 bg-[#EBEEF0] p-4 rounded-md'>

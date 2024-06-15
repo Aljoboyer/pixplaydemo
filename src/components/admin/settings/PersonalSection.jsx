@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import SettingsVector from '../../../assets/image/settingsVector.jpg';
 import ImageUpload from '../../common/ImageUpload/ImageUpload';
 import { MultiSelect } from '../../common/MultiSelect/MultiSelect';
-import { departmentOptions } from '../../../helper/constantData';
 import { nameRegex, passwordRegex } from '../../../helper/regexData';
-import { useProfileUpdateMutation, useUpdatePasswordMutation, useUserDataQuery } from '../../../redux/features/userApi';
+import { useGetDepartmentQuery, useProfileUpdateMutation, useUpdatePasswordMutation, useUserDataQuery } from '../../../redux/features/userApi';
 import { toast } from 'react-toastify';
 import { jwtDecode } from "jwt-decode";
 
@@ -30,6 +29,10 @@ const PersonalSection = () => {
 	  });
     const decodedToken = jwtDecode(accessToken);
     const [updateProfile, { }] = useProfileUpdateMutation();
+    const {data: departmentData} = useGetDepartmentQuery(credentials, {
+		refetchOnMountOrArgChange: true,
+	  });
+    const [departmentOptions, setDepartmentOptions] = useState([]);
 
     useEffect(() => {
         if(userProfile?.data){
@@ -56,7 +59,7 @@ const PersonalSection = () => {
         }
         if(isValid){
             setPasswordLoading(true)
-            const requestObj = { password: {password: newPassword}, accessToken}
+            const requestObj = { password: {newPassword: newPassword, oldPassword: oldPassword}, accessToken}
             const response = await passwordUpdate(requestObj)
 
             if(response?.data?.success == 1){
@@ -77,6 +80,13 @@ const PersonalSection = () => {
                     onClose: () => {
                     },
                     });
+            }
+            else if(response?.data?.data == "Password is wrong or invalid!"){
+                setPasswordLoading(false)
+                setPasswordErr("Old Password is wrong")
+            }
+            else {
+                setPasswordLoading(false)
             }
             console.log('Response ==>', response)
         }
@@ -132,11 +142,41 @@ const PersonalSection = () => {
                     },
                     });
             }
+            else{
+              setOrgLoading(false)
+            }
 
             console.log('Profile updateResponse ===>', updateResponse)
         }
        }
-    // console.log(profileData)
+    
+    useEffect(() => {
+        if(departmentData?.data?.length > 0){
+            const formateDept = departmentData?.data?.map((item) => {
+                const formatObj = {
+                    label: item?.departmentName,
+                    value: item?.departmentID
+                }
+                return formatObj
+            })
+        setDepartmentOptions(formateDept)
+        }
+    },[departmentData?.data])
+
+    useEffect(() => {
+        if(userProfile?.data?.departments?.length > 0){
+            const formateDept = userProfile?.data?.departments?.map((item) => {
+                const formatObj = {
+                    label: item?.departmentName,
+                    value: item?.departmentId
+                }
+                return formatObj
+            })
+         setSelectedDepartment(formateDept)
+        }
+    },[userProfile?.data?.departments])
+
+    // console.log(selectedDepartement)
     // console.log(decodedToken)
 
   return (
@@ -197,7 +237,7 @@ const PersonalSection = () => {
                         }
                       </div>
 
-                      <div className='mt-4 ms-0 lg:ms-4'>
+                     <div className='mt-4 ms-0 lg:ms-4'>
                          <MultiSelect
                           optionsData={departmentOptions || []}
                           selectedOptions={selectedDepartement}

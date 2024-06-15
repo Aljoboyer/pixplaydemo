@@ -80,6 +80,9 @@ const BrandSection = () => {
             },
             });
         }
+        else{
+          setOrgLoading(false)
+        }
     }
   }
   console.log(userProfile)
