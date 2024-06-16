@@ -143,6 +143,7 @@ const Login = () => {
                        </div> 
                        }
                       </div>
+
                       <div className='mt-4'>
                           <label className='text-white font-medium' htmlFor="email">Password *</label>
                           <input
@@ -159,6 +160,11 @@ const Login = () => {
                        }
                       </div>
                       
+                      <div className='mt-4'>
+                          <p
+                          onClick={() => navigate('/forgot-password')}
+                          className='cursor-pointer font-bold italic text-blue-400 text-[15px] ms-[100px] md:ms-[100px] xl:ms-[100px]'>Forgot Password ?</p>
+                      </div>
                      {
                       loading ?  <button className='font-bold bg-white px-5 py-2 ms-24 rounded mt-7 '>Loading...</button> :  <button onClick={validationHandler} className='font-bold bg-white px-5 py-2 ms-24 rounded mt-7 '>Login</button>
                      }

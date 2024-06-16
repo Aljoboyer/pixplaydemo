@@ -9,6 +9,7 @@ import Media from './pages/admin/Media/Media';
 import Studio from './pages/admin/Studio/Studio';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ForgotPassword from './pages/common/Auth/ForgotPassword/ForgotPassword';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<LandingHome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/dashboard/admin-home" element={<AdminHome />} />
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/Media" element={<Media />} />
