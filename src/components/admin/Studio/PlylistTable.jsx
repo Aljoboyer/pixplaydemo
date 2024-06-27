@@ -1,6 +1,8 @@
 import React from 'react'
 import { MdOutlineDelete } from "react-icons/md";
 import { IoPlayCircleSharp } from "react-icons/io5";
+import { IoMdEye } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
 
 
 const PlaylistInfo = () => {
@@ -13,7 +15,6 @@ const PlaylistInfo = () => {
           </div>
       </div>
 }
-{/* <MdOutlineDelete color='red' className='' size={24}/> */}
 
 const PlylistTable = () => {
   return (
@@ -41,29 +42,29 @@ const PlylistTable = () => {
                   <td className=' py-2 '>
                         <PlaylistInfo/>
                   </td>
-                  <td className=' text-center py-2 italic text-gray-500'>
-                      00:20:90 
+                  <td className=' text-center py-2 text-white'>
+                      <span className='bg-black p-2 rounded font-medium'>00:20:90</span>
                   </td>
-                  <td className=' text-center py-2 italic text-gray-500'>
+                  <td className=' text-center py-2 font-medium'>
                       April 1 2024
                   </td>
-                  <td className=' text-center py-2'>
+                  <td className=' text-center py-2 font-medium'>
                     15:30:24
                   </td>
-                  <td className=' text-center py-2'>
+                  <td className=' text-center py-2 font-medium'>
                     542990
                   </td>
                   <td className='px-6 lg:px-0 text-center py-2'>
-                    Published
+                    <span className='bg-green-500 p-2 rounded-full font-medium text-white'>Published</span>
+                  </td>
+                  <td className='px-6 lg:px-0 text-center py-2 '>
+                    <p className='bg-black text-white font-medium py-2 rounded-md text-[11px] md:text-base px-2 lg:px-0'>Preview <IoMdEye className='inline' color='white'/></p>
                   </td>
                   <td className='px-6 lg:px-0 text-center py-2'>
-                    Preview
-                  </td>
-                  <td className='px-6 lg:px-0 text-center py-2'>
-                    Delete
+                    <p className='bg-red-500 text-white font-medium py-2 rounded-md ms-2 text-[11px] md:text-base px-2 lg:px-0'>Delete <MdDelete className='inline' color='white'/></p>
                   </td>
                   <td className=' text-center py-2'>
-                    <input type="checkbox"/>
+                    <input type="checkbox" className=''/>
                   </td>
               </tr>
                 ))
