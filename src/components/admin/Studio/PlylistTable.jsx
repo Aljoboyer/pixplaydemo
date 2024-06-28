@@ -17,7 +17,7 @@ const PlaylistInfo = () => {
       </div>
 }
 
-const PlylistTable = ({mediaViewHandler}) => {
+const PlylistTable = ({playlistDeleteHandler}) => {
   const navigate = useNavigate()
   return (
     <div className='bg-gray-100 p-4 mt-4 w-full rounded z-0 min-h-screen'>
@@ -67,7 +67,10 @@ const PlylistTable = ({mediaViewHandler}) => {
                     }} className='bg-black text-white font-medium py-2 rounded-md text-[11px] md:text-base px-2 lg:px-0'>Preview <IoMdEye className='inline' color='white'/></p>
                   </td>
                   <td className='px-6 lg:px-0 text-center py-2'>
-                    <p className='bg-red-500 text-white font-medium py-2 rounded-md ms-2 text-[11px] md:text-base px-2 lg:px-0'>Delete <MdDelete className='inline' color='white'/></p>
+                    <p onClick={(e) => {
+                      e.stopPropagation();
+                      playlistDeleteHandler()
+                    }} className='bg-red-500 text-white font-medium py-2 rounded-md ms-2 text-[11px] md:text-base px-2 lg:px-0'>Delete <MdDelete className='inline' color='white'/></p>
                   </td>
                   <td className=' text-center py-2'>
                     <input type="checkbox" className=''/>

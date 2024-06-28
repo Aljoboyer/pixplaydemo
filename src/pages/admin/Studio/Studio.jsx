@@ -5,11 +5,13 @@ import BottomTab from '../../../components/common/BottomTab/BottomTab';
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import PlylistTable from '../../../components/admin/Studio/PlylistTable';
 import { useNavigate } from 'react-router-dom';
+import ConfirmationModal from '../../../components/common/Modals/ConfirmationModal';
 
 const Studio = () => {
   const navigate = useNavigate()
   const tabData = ['Playlist', 'Channel', 'Screen']
   const [currentTab, setCurrentTab] = useState('')
+  const [playlistDeleteModalShow, setPlaylistDeleteModalShow] = useState(false)
 
   useEffect(() => {
     setCurrentTab('Playlist')
@@ -18,6 +20,15 @@ const Studio = () => {
   const currentTabHandler = (tabName) => {
     setCurrentTab(tabName)
   }
+
+  const toggleDeleteModal = () => {
+    setPlaylistDeleteModalShow(!playlistDeleteModalShow)
+  }
+
+  const playlistDeleteHandler = () => {
+    toggleDeleteModal()
+  }
+
 
   return (
     <Layout noTopPadding={true}>
@@ -48,13 +59,25 @@ const Studio = () => {
                </div>
         </div>
 
-        <PlylistTable />
+        <PlylistTable playlistDeleteHandler={playlistDeleteHandler} />
 
         <BottomTab
           currentTab={currentTab}
           setCurrentTab={currentTabHandler}
           tabData={tabData}
         />
+
+        {
+            playlistDeleteModalShow && (
+                <ConfirmationModal
+                onClose={toggleDeleteModal}
+                visible={playlistDeleteModalShow}
+                mainTitle={'Move to Trash?'}
+                infoTitle={'Birthday Whishses playlist will be deleted and moved to the Trash.'}
+                />
+            )
+          }
+
     </Layout>
   )
 }

@@ -28,8 +28,8 @@ function App() {
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/Media" element={<Media />} />
           <Route path="/dashboard/Studio" element={<Studio />} />
-          <Route path="/dashboard/PlaylistPreview" element={<PlaylistPreview />} />
-          <Route path="/dashboard/PlaylistCreateOptions" element={<PlaylistCreateOptions />} />
+          {/* <Route path="/dashboard/PlaylistPreview" element={<PlaylistPreview />} />
+          <Route path="/dashboard/PlaylistCreateOptions" element={<PlaylistCreateOptions />} /> */}
         </Routes>
       </Router>
     </main>
