@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ForgotPassword from './pages/common/Auth/ForgotPassword/ForgotPassword';
 import PlaylistPreview from './components/admin/Studio/PlaylistPreview';
 import PlaylistCreateOptions from './pages/admin/Studio/PlaylistCreateOptions';
+import CreatePlaylist from './pages/admin/Studio/CreatePlaylist';
 
 function App() {
 
@@ -29,7 +30,8 @@ function App() {
           <Route path="/dashboard/Media" element={<Media />} />
           <Route path="/dashboard/Studio" element={<Studio />} />
           {/* <Route path="/dashboard/PlaylistPreview" element={<PlaylistPreview />} />
-          <Route path="/dashboard/PlaylistCreateOptions" element={<PlaylistCreateOptions />} /> */}
+          <Route path="/dashboard/PlaylistCreateOptions" element={<PlaylistCreateOptions />} />
+          <Route path="/dashboard/CreatePlaylist" element={<CreatePlaylist />} /> */}
         </Routes>
       </Router>
     </main>

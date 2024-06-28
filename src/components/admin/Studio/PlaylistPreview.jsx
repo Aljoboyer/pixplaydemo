@@ -9,8 +9,8 @@ const PlaylistPreview = () => {
     const navigate = useNavigate()
     const [rotation, setRotation] = useState('Landscape')
     return (
-        <div className="flex items-center justify-center w-full min-h-screen z-10 px-4 bg-black">
-            <div className="h-auto p-4 bg-white rounded-lg xs:mx-3 md:w-2/3 w-full ">
+        <div className="flex items-center justify-center w-full min-h-screen px-4 bg-black">
+            <div className="h-auto p-4 bg-white rounded-lg xs:mx-3 md:w-4/5 w-full ">
                <div className='flex flex-row justify-between items-center border-b-2 border-gray-200 pb-4'>
                     <div className='flex flex-row items-center '>
                         <FaRegArrowAltCircleLeft size={28} />

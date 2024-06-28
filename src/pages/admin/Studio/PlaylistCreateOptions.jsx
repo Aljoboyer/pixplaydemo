@@ -2,8 +2,10 @@ import React from 'react'
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import Layout from '../../../components/common/Layouts/Layout';
 import { IoSearch } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 
 const PlaylistCreateOptions = () => {
+    const navigate = useNavigate()
   return (
     <Layout noTopPadding={true}>
         <div className='w-full'>
@@ -25,7 +27,7 @@ const PlaylistCreateOptions = () => {
             </div>
 
             <div className='xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center w-full py-4 justify-evenly'>
-                <div className='flex flex-row items-end landing_home_main_container w-[500px] h-[600px] rounded-lg cursor-pointer'>
+                <div onClick={() => navigate('/dashboard/CreatePlaylist')} className='flex flex-row items-end landing_home_main_container w-[500px] h-[600px] rounded-lg cursor-pointer'>
                     <div className='w-full playlist_format_options flex flex-row items-center justify-center h-[80px] '>
                         <p className='text-white font-bold text-xl md:text-3xl text-center '>Multimedia</p>
                     </div>
