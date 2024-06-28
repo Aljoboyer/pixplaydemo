@@ -4,12 +4,10 @@ import { IoSearch } from "react-icons/io5";
 import BottomTab from '../../../components/common/BottomTab/BottomTab';
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import PlylistTable from '../../../components/admin/Studio/PlylistTable';
-import PlaylistPreviewModal from '../../../components/admin/Studio/PlaylistPreviewModal';
 
 const Studio = () => {
     const tabData = ['Playlist', 'Channel', 'Screen']
   const [currentTab, setCurrentTab] = useState('')
-  const [playlsitViewModalShow, setPlaylsitViewModalShow] = useState(false)
 
   useEffect(() => {
     setCurrentTab('Playlist')
@@ -19,14 +17,6 @@ const Studio = () => {
     setCurrentTab(tabName)
   }
 
-  const toggleViewModal = () => {
-    setPlaylsitViewModalShow(!playlsitViewModalShow)
-  }
-  const mediaViewHandler = () => {
-    console.log("clicked")
-    toggleViewModal()
-  }
-  console.log(playlsitViewModalShow)
   return (
     <Layout noTopPadding={true}>
          <div className='w-full  sticky top-16 z-999 bg-white  h-[180px] px-4 py-4'>
@@ -56,19 +46,13 @@ const Studio = () => {
                </div>
         </div>
 
-        <PlylistTable mediaViewHandler={mediaViewHandler}/>
+        <PlylistTable />
 
         <BottomTab
           currentTab={currentTab}
           setCurrentTab={currentTabHandler}
           tabData={tabData}
         />
-        {
-          playlsitViewModalShow &&  <PlaylistPreviewModal
-          onClose={toggleViewModal}
-          visible={playlsitViewModalShow}
-          />
-        }
     </Layout>
   )
 }

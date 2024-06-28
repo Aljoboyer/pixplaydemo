@@ -10,6 +10,7 @@ import Studio from './pages/admin/Studio/Studio';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ForgotPassword from './pages/common/Auth/ForgotPassword/ForgotPassword';
+import PlaylistPreview from './components/admin/Studio/PlaylistPreview';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/Media" element={<Media />} />
           <Route path="/dashboard/Studio" element={<Studio />} />
+          <Route path="/dashboard/PlaylistPreview" element={<PlaylistPreview />} />
         </Routes>
       </Router>
     </main>

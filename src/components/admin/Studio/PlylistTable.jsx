@@ -3,6 +3,7 @@ import { MdOutlineDelete } from "react-icons/md";
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { IoMdEye } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 
 const PlaylistInfo = () => {
@@ -17,6 +18,7 @@ const PlaylistInfo = () => {
 }
 
 const PlylistTable = ({mediaViewHandler}) => {
+  const navigate = useNavigate()
   return (
     <div className='bg-gray-100 p-4 mt-4 w-full rounded z-0 min-h-screen'>
     <div className='w-full overflow-y-visible overflow-x-auto  mt-4 bg-white p-4 rounded'>
@@ -60,7 +62,8 @@ const PlylistTable = ({mediaViewHandler}) => {
                   <td className='px-6 lg:px-0 text-center py-2 '>
                     <p onClick={(e) => {
                       e.stopPropagation();
-                      mediaViewHandler()
+                      console.log('clicked')
+                      navigate('/dashboard/PlaylistPreview')
                     }} className='bg-black text-white font-medium py-2 rounded-md text-[11px] md:text-base px-2 lg:px-0'>Preview <IoMdEye className='inline' color='white'/></p>
                   </td>
                   <td className='px-6 lg:px-0 text-center py-2'>
