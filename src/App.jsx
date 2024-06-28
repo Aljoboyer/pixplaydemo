@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ForgotPassword from './pages/common/Auth/ForgotPassword/ForgotPassword';
 import PlaylistPreview from './components/admin/Studio/PlaylistPreview';
+import PlaylistCreateOptions from './pages/admin/Studio/PlaylistCreateOptions';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/dashboard/Media" element={<Media />} />
           <Route path="/dashboard/Studio" element={<Studio />} />
           <Route path="/dashboard/PlaylistPreview" element={<PlaylistPreview />} />
+          <Route path="/dashboard/PlaylistCreateOptions" element={<PlaylistCreateOptions />} />
         </Routes>
       </Router>
     </main>

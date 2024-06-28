@@ -4,9 +4,11 @@ import { IoSearch } from "react-icons/io5";
 import BottomTab from '../../../components/common/BottomTab/BottomTab';
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import PlylistTable from '../../../components/admin/Studio/PlylistTable';
+import { useNavigate } from 'react-router-dom';
 
 const Studio = () => {
-    const tabData = ['Playlist', 'Channel', 'Screen']
+  const navigate = useNavigate()
+  const tabData = ['Playlist', 'Channel', 'Screen']
   const [currentTab, setCurrentTab] = useState('')
 
   useEffect(() => {
@@ -41,7 +43,7 @@ const Studio = () => {
                     <p className='text-xl  font-bold '>
                     Total List - 5</p>
                   <div className='w-full md:w-1/2 lg:w-[200px]'>
-                        <button onClick={() => setShowMediaUploadModal(true)} className='px-2 py-2 bg-[#015FDF] text-white font-bold rounded-md text-sm md:text-base lg:text-lg w-full mt-4 md:mt-4 lg:mt-0'>+ New Playlist</button>
+                        <button onClick={() => navigate('/dashboard/PlaylistCreateOptions')} className='px-2 py-2 bg-[#015FDF] text-white font-bold rounded-md text-sm md:text-base lg:text-lg w-full mt-4 md:mt-4 lg:mt-0 cursor-pointer'>+ New Playlist</button>
                     </div>
                </div>
         </div>
