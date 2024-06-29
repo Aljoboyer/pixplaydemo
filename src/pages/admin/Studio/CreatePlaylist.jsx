@@ -7,17 +7,25 @@ import { GoCopy } from "react-icons/go";
 import { IoMdEye } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
+import TvLogo from '../../../assets/image/firetv.png'
+import { FaRegSquareCheck } from "react-icons/fa6";
+import { FaSquareCheck } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa6";
+import { FaMinus } from "react-icons/fa6";
+import { RiDragMove2Fill } from "react-icons/ri";
 
 const CreatePlaylist = () => {
   const navigate = useNavigate()
   const [mediaNameEdit, setMediaNameEdit] = useState(false)
   const [currentBtn , setCurrentBtn] = useState('Library')
+  const [checked, setChecked] = useState(false)
 
+  console.log('checked', checked)
   return (
     <Layout noTopPadding={true}>
         <div className='xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center w-full py-4'>
                 <div className='w-full md:w-2/3 flex flex-row justify-start items-center'>
-                    <FaRegArrowAltCircleLeft size={28} />
+                    <FaRegArrowAltCircleLeft onClick={() => navigate('/dashboard/Studio')} size={28} />
                     <p className='text-xl  font-bold md:text-3xl ms-2'>
                     Create Playlist</p>
                 </div>
@@ -53,8 +61,31 @@ const CreatePlaylist = () => {
         </div>
         
         <div className='xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-col sm:flex sm:flex-col items-start w-full '>
-            <div className='w-3/5'>
+            <div className='w-3/5 px-4'>
+                {
+                  [1,2,3]?.map((item) => (
+                    <div className='flex flex-row justify-between items-center border border-1 border-gray-500 p-4'>
+                    <div className='flex flex-row justify-start items-center'>
+                        <div className='w-[40px] h-[40px]'>
+                          <img src={TvLogo} className='w-full h-full' />
+                        </div>
+                        <p className='font-medium ms-2 text-xl'>Birthday Wishes</p>
+                    </div>
+                    <div className='flex flex-row justify-center items-center'>
+                        <button className='bg-gray-100 p-2 rounded-md'><FaMinus/></button>
+                        <p className='font-medium mx-2'>7"</p>
+                        <button className='bg-gray-200 p-2 rounded-md'><FaPlus/></button>
+                    </div>
 
+                    <div className='flex flex-row justify-center items-center'>
+                        <p className='font-medium text-lg mr-9'>Image</p>
+                        <RiDragMove2Fill size={25}/>
+                    </div>
+                    </div>
+                  ))
+                }
+
+                <button className='text-center w-[250px] py-4 bg-[#1199EE] text-white font-bold text-lg my-4  rounded'>+ Add Content</button>
             </div>
 
             <div className='w-2/5 bg-[#DDDDDD]'>
@@ -81,8 +112,35 @@ const CreatePlaylist = () => {
                   <div className='flex flex-row justify-between items-center p-2'>
                         <p className='font-bold'>Library {`>`} All </p>
                         
-                        <button className='bg-white px-4 py-2 rounded text-lg font-bold'>+</button>
+                        <button className='bg-white px-4 py-2 rounded text-[20px] font-bold'><FaPlus/></button>
                   </div>
+
+                  {
+                    [1,2,3,4]?.map((item) => (
+                      <div className='flex flex-row justify-between items-center bg-white border border-1 border-gray-500 p-4'>
+                        <div className='flex flex-row justify-start items-center'>
+                            <div className='w-[40px] h-[40px]'>
+                              <img src={TvLogo} className='w-full h-full' />
+                            </div>
+                             <div>
+                                <p className='font-medium ms-2'>Birthday Celebrate 098405843.png</p>
+                                <p className='ms-2 text-[11px] text-gray-400'>Image</p>
+                             </div>
+                        </div>
+
+                        <button onClick={() => navigate('/dashboard/PlaylistPreview')} className='p-2 border border-1 border-gray-400 rounded-md bg-white'>
+                          <IoMdEye size={25} />
+                        </button>
+
+                        {
+                          checked ? <button onClick={() => setChecked(false)}><FaSquareCheck color='#1199EE' size={28}/></button>  : <button onClick={() => setChecked(true)}><FaRegSquareCheck size={28}/></button>
+                            
+                          }
+                      </div>
+                    ))
+                  }
+
+                  <button className='text-center w-[250px] py-4 bg-[#1199EE] text-white font-bold text-lg my-4 mx-4 rounded'>Insert</button>
             </div>
 
         </div>

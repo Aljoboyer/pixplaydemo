@@ -5,6 +5,7 @@ import { PiTelevisionSimpleBold } from "react-icons/pi";
 import { CiPlay1 } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
 import TvLogo from '../../../assets/image/firetv.png'
+
 const PlaylistPreview = () => {
     const navigate = useNavigate()
     const [rotation, setRotation] = useState('Landscape')
