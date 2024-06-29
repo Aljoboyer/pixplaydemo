@@ -13,12 +13,16 @@ import { FaSquareCheck } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 import { RiDragMove2Fill } from "react-icons/ri";
+import { RiSettingsLine } from "react-icons/ri";
+import { MdInfoOutline } from "react-icons/md";
+import Switch from "react-switch";
 
 const CreatePlaylist = () => {
   const navigate = useNavigate()
   const [mediaNameEdit, setMediaNameEdit] = useState(false)
   const [currentBtn , setCurrentBtn] = useState('Library')
   const [checked, setChecked] = useState(false)
+  const [shuffleChecked, setShuffleChecked] = useState(false);
 
   console.log('checked', checked)
   return (
@@ -94,53 +98,77 @@ const CreatePlaylist = () => {
                       <button onClick={() => setCurrentBtn('Setting')} className={`${currentBtn == "Setting" ? "bg-white shadow-md text-xl font-medium text-blue-400 w-1/2 py-4" : "bg-[#DDDDDD] drop-shadow-md text-xl font-medium text-gray-400 w-1/2 py-4"}`}>Setting</button>
                   </div>
 
-                  <div className='flex flex-row justify-between items-center p-2'>
-                      <div className='flex flex-row justify-start items-center w-4/5'>
-                          <input className='p-2 rounded outline-none' placeholder='Search playlist'/>
-                          <button className='bg-[#1199EE] text-white font-medium p-2 rounded'>Search</button>
-                      </div>
-
-                      <div className='w-1/5'>
-                        <select className='border border-1 border-gray-600 p-2 rounded-md'>
-                              <option value="All">All</option>
-                              <option value="Image">Image</option>
-                              <option value="Video">Video</option>
-                          </select>
-                      </div>
-                  </div>
-
-                  <div className='flex flex-row justify-between items-center p-2'>
-                        <p className='font-bold'>Library {`>`} All </p>
-                        
-                        <button className='bg-white px-4 py-2 rounded text-[20px] font-bold'><FaPlus/></button>
-                  </div>
-
                   {
-                    [1,2,3,4]?.map((item) => (
-                      <div className='flex flex-row justify-between items-center bg-white border border-1 border-gray-500 p-4'>
-                        <div className='flex flex-row justify-start items-center'>
-                            <div className='w-[40px] h-[40px]'>
-                              <img src={TvLogo} className='w-full h-full' />
-                            </div>
-                             <div>
-                                <p className='font-medium ms-2'>Birthday Celebrate 098405843.png</p>
-                                <p className='ms-2 text-[11px] text-gray-400'>Image</p>
-                             </div>
+                    currentBtn == 'Library' &&
+                  <div className='w-full'>
+                    <div className='flex flex-row justify-between items-center p-2'>
+                        <div className='flex flex-row justify-start items-center w-4/5'>
+                            <input className='p-2 rounded outline-none' placeholder='Search playlist'/>
+                            <button className='bg-[#1199EE] text-white font-medium p-2 rounded'>Search</button>
                         </div>
 
-                        <button onClick={() => navigate('/dashboard/PlaylistPreview')} className='p-2 border border-1 border-gray-400 rounded-md bg-white'>
-                          <IoMdEye size={25} />
-                        </button>
+                        <div className='w-1/5'>
+                          <select className='border border-1 border-gray-600 p-2 rounded-md'>
+                                <option value="All">All</option>
+                                <option value="Image">Image</option>
+                                <option value="Video">Video</option>
+                            </select>
+                        </div>
+                    </div>
 
-                        {
-                          checked ? <button onClick={() => setChecked(false)}><FaSquareCheck color='#1199EE' size={28}/></button>  : <button onClick={() => setChecked(true)}><FaRegSquareCheck size={28}/></button>
-                            
-                          }
-                      </div>
-                    ))
+                    <div className='flex flex-row justify-between items-center p-2'>
+                          <p className='font-bold'>Library {`>`} All </p>
+                          
+                          <button className='bg-white px-4 py-2 rounded text-[20px] font-bold'><FaPlus/></button>
+                    </div>
+
+                    {
+                      [1,2,3,4]?.map((item) => (
+                        <div className='flex flex-row justify-between items-center bg-white border border-1 border-gray-500 p-4'>
+                          <div className='flex flex-row justify-start items-center'>
+                              <div className='w-[40px] h-[40px]'>
+                                <img src={TvLogo} className='w-full h-full' />
+                              </div>
+                              <div>
+                                  <p className='font-medium ms-2'>Birthday Celebrate 098405843.png</p>
+                                  <p className='ms-2 text-[11px] text-gray-400'>Image</p>
+                              </div>
+                          </div>
+
+                          <button onClick={() => navigate('/dashboard/PlaylistPreview')} className='p-2 border border-1 border-gray-400 rounded-md bg-white'>
+                            <IoMdEye size={25} />
+                          </button>
+
+                          {
+                            checked ? <button onClick={() => setChecked(false)}><FaSquareCheck color='#1199EE' size={28}/></button>  : <button onClick={() => setChecked(true)}><FaRegSquareCheck size={28}/></button>
+                              
+                            }
+                        </div>
+                      ))
+                    }
+
+                    <button className='text-center w-[250px] py-4 bg-[#1199EE] text-white font-bold text-lg my-4 mx-4 rounded'>Insert</button>
+                  </div>
                   }
 
-                  <button className='text-center w-[250px] py-4 bg-[#1199EE] text-white font-bold text-lg my-4 mx-4 rounded'>Insert</button>
+                  {
+                    currentBtn == 'Setting' && <div className='w-full'>
+                        <div className='flex flex-row justify-start items-center bg-gray-200 border border-1 border-gray-500 p-2'>
+                            <RiSettingsLine className='ms-4' size={24}/>
+                            <p className='font-bold text-lg ms-2 underline'>Playback</p>
+                        </div>
+                        <div className='flex flex-row justify-between items-center bg-white border border-1 border-gray-500 p-2'>
+                            <div className='flex flex-row justify-start items-center'>
+                                <MdInfoOutline  className='ms-4' size={20}/>
+                                <p className=' ms-2 font-medium'>Shuffle</p>
+                            </div>
+
+                            <div>
+                            <Switch onColor="#1199EE" uncheckedIcon={false} checkedIcon={false} onChange={(check) => setShuffleChecked(check)} checked={shuffleChecked} />
+                            </div>
+                        </div>
+                    </div>
+                  }
             </div>
 
         </div>
