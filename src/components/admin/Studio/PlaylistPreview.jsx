@@ -4,7 +4,7 @@ import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
 import { CiPlay1 } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
-
+import TvLogo from '../../../assets/image/firetv.png'
 const PlaylistPreview = () => {
     const navigate = useNavigate()
     const [rotation, setRotation] = useState('Landscape')
@@ -51,9 +51,10 @@ const PlaylistPreview = () => {
                 <div className='xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-col sm:flex sm:flex-col w-full justify-between items-start w-full'>
                     <div className='w-4/5 bg-gray-100 h-[800px] p-2 flex flex-row justify-center items-center'>
                         {
-                            rotation == 'Landscape' ? <div className='bg-blue-400 w-[750px] h-[500px]'>
-                            
-                            </div> : <div className='bg-blue-400 w-[500px] h-[700px]'>
+                            rotation == 'Landscape' ? <div className='w-[750px] h-[500px]'>
+                                <img src={TvLogo} className='w-full h-full' />
+                            </div> : <div className=' w-[500px] h-[700px]'>
+                            <img src={TvLogo} className='w-full h-full' />
                             
                             </div>
                         }
@@ -61,12 +62,15 @@ const PlaylistPreview = () => {
                     <div className='w-1/5 ms-2'>
                         <div className=' flex flex-row justify-start items-center side_bar_style p-2'>
                             <CiPlay1 color='white' size={24}/>
-                            <p className='text-lg font-bold text-white'>Playing</p>
+                            <p className='text-lg font-bold text-white ms-2'>Playing</p>
                         </div>
                         {
                             [1,2,3,4,5,6]?.map((item) => (
-                            <div className='border border-1 border-gray-500 p-2'>
-                                 <p className='font-medium'>|| Birthday image 1.png</p>
+                            <div className='border border-1 border-gray-500 p-2 flex flex-row items-center'>
+                                <div className='w-[40px] h-[40px]'>
+                                <img src={TvLogo} className='w-full h-full' />
+                                </div>
+                                 <p className='font-medium ms-2'>Birthday image 1.png</p>
                             </div>
                             ))
                         }

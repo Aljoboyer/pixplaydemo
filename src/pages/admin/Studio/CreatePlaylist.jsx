@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 const CreatePlaylist = () => {
   const navigate = useNavigate()
   const [mediaNameEdit, setMediaNameEdit] = useState(false)
-
+  const [currentBtn , setCurrentBtn] = useState('Library')
 
   return (
     <Layout noTopPadding={true}>
@@ -51,7 +51,41 @@ const CreatePlaylist = () => {
                       <button className='side_bar_style text-white font-medium w-[120px] h-[60px] flex flex-row items-center justify-center rounded'>Publish <MdDone className='ms-2'/></button>
                 </div>
         </div>
+        
+        <div className='xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-col sm:flex sm:flex-col items-start w-full '>
+            <div className='w-3/5'>
 
+            </div>
+
+            <div className='w-2/5 bg-[#DDDDDD]'>
+                  <div className='flex flex-row items-center justify-center bg-[#DDDDDD]'>
+                      <button onClick={() => setCurrentBtn('Library')} className={`${currentBtn == "Library" ? "bg-white shadow-md text-xl font-medium text-blue-400 w-1/2 py-4" : "bg-[#DDDDDD] drop-shadow-md text-xl font-medium text-gray-400 w-1/2 py-4"}`}>Library</button>
+                      <button onClick={() => setCurrentBtn('Setting')} className={`${currentBtn == "Setting" ? "bg-white shadow-md text-xl font-medium text-blue-400 w-1/2 py-4" : "bg-[#DDDDDD] drop-shadow-md text-xl font-medium text-gray-400 w-1/2 py-4"}`}>Setting</button>
+                  </div>
+
+                  <div className='flex flex-row justify-between items-center p-2'>
+                      <div className='flex flex-row justify-start items-center w-4/5'>
+                          <input className='p-2 rounded outline-none' placeholder='Search playlist'/>
+                          <button className='bg-[#1199EE] text-white font-medium p-2 rounded'>Search</button>
+                      </div>
+
+                      <div className='w-1/5'>
+                        <select className='border border-1 border-gray-600 p-2 rounded-md'>
+                              <option value="All">All</option>
+                              <option value="Image">Image</option>
+                              <option value="Video">Video</option>
+                          </select>
+                      </div>
+                  </div>
+
+                  <div className='flex flex-row justify-between items-center p-2'>
+                        <p className='font-bold'>Library {`>`} All </p>
+                        
+                        <button className='bg-white px-4 py-2 rounded text-lg font-bold'>+</button>
+                  </div>
+            </div>
+
+        </div>
     </Layout>
   )
 }
