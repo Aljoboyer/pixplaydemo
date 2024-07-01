@@ -87,10 +87,13 @@ const MediaUploadModal = ({ visible, onClose }) => {
                     currentTab == 'Selected' && <MediaSelected/>
                 }
                <div className='flex flex-row justify-end items-center  pb-4 mt-2'>
-                    
-                 <button onClick={() => setCurrentTab('Selected')} className={`flex flex-row items-center border border-1 border-gray-300 rounded-md text-xl font-medium px-4 py-2 mt-2 bg-[#1199EE] text-white`}>
+                    {
+                        currentTab == 'Selected' ? <button  className={`flex flex-row items-center border border-1 border-gray-300 rounded-md text-xl font-medium px-4 py-2 mt-2 bg-[#1199EE] text-white`}>
+                        Submit
+                    </button> : <button onClick={() => setCurrentTab('Selected')} className={`flex flex-row items-center border border-1 border-gray-300 rounded-md text-xl font-medium px-4 py-2 mt-2 bg-[#1199EE] text-white`}>
                     View Selected
                 </button>
+                    }
                </div>
 
             </div>

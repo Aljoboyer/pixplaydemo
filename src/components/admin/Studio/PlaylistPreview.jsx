@@ -14,7 +14,10 @@ const PlaylistPreview = () => {
             <div className="h-auto p-4 bg-white rounded-lg xs:mx-3 md:w-4/5 w-full ">
                <div className='flex flex-row justify-between items-center border-b-2 border-gray-200 pb-4'>
                     <div className='flex flex-row items-center '>
-                        <FaRegArrowAltCircleLeft size={28} />
+                        <FaRegArrowAltCircleLeft className='cursor-pointer' onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(-1)
+                    }} size={28} />
                        <p className='text-xl  font-bold md:text-3xl ms-2'>
                         Preview</p>
                     </div>
@@ -22,7 +25,7 @@ const PlaylistPreview = () => {
                     <div 
                     onClick={(e) => {
                         e.stopPropagation();
-                        navigate('/dashboard/Studio')
+                        navigate(-1)
                     }}
                     className='cursor-pointer'>
                         <MdOutlineCancel size={30} color='black' />

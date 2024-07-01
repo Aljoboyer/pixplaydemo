@@ -11,7 +11,7 @@ const PlaylistCreateOptions = () => {
         <div className='w-full'>
             <div className='xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center w-full py-4'>
                 <div className='w-full md:w-2/3 flex flex-row justify-start items-center'>
-                    <FaRegArrowAltCircleLeft size={28} />
+                    <FaRegArrowAltCircleLeft className='cursor-pointer' onClick={() => navigate('/dashboard/Studio')} size={28} />
                     <p className='text-xl  font-bold md:text-3xl ms-2'>
                     Choose Format</p>
                 </div>

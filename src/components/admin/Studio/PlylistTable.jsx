@@ -1,9 +1,9 @@
 import React from 'react'
-import { MdOutlineDelete } from "react-icons/md";
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { IoMdEye } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
+
 
 
 const PlaylistInfo = () => {
@@ -20,7 +20,7 @@ const PlaylistInfo = () => {
 const PlylistTable = ({playlistDeleteHandler}) => {
   const navigate = useNavigate()
   return (
-    <div className='bg-gray-100 p-4 mt-4 w-full rounded z-0 min-h-screen'>
+  <div className='bg-gray-100 p-4 mt-4 w-full rounded z-0 min-h-screen'>
     <div className='w-full overflow-y-visible overflow-x-auto  mt-4 bg-white p-4 rounded'>
         <table className="w-full  table-auto overflow-visible mx-auto">
             <thead className="  ">
@@ -53,7 +53,7 @@ const PlylistTable = ({playlistDeleteHandler}) => {
                   <td className=' text-center py-2 font-medium'>
                     15:30:24
                   </td>
-                  <td className=' text-center py-2 font-medium'>
+                  <td onClick={() => navigate('/dashboard/CreatePlaylist')} className=' text-center py-2 font-medium'>
                     542990
                   </td>
                   <td className='px-6 lg:px-0 text-center py-2'>
@@ -81,7 +81,6 @@ const PlylistTable = ({playlistDeleteHandler}) => {
             </tbody>
         </table>
     </div>
-    
 </div>
   )
 }

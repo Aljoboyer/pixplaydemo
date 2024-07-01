@@ -16,6 +16,8 @@ import { RiDragMove2Fill } from "react-icons/ri";
 import { RiSettingsLine } from "react-icons/ri";
 import { MdInfoOutline } from "react-icons/md";
 import Switch from "react-switch";
+import MediaUploadModal from '../../../components/admin/Media/MediaModal/MediaUploadModal';
+import ConfirmationModal from '../../../components/common/Modals/ConfirmationModal';
 
 const CreatePlaylist = () => {
   const navigate = useNavigate()
@@ -23,8 +25,16 @@ const CreatePlaylist = () => {
   const [currentBtn , setCurrentBtn] = useState('Library')
   const [checked, setChecked] = useState(false)
   const [shuffleChecked, setShuffleChecked] = useState(false);
+  const [showMediaUploadModal, setShowMediaUploadModal] = useState(false)
+  const [playlistDeleteModalShow, setPlaylistDeleteModalShow] = useState(false)
 
-  console.log('checked', checked)
+  const toggleUploadModal = () => {
+    setShowMediaUploadModal(!showMediaUploadModal);
+  };
+  const toggleDeleteModal = () => {
+    setPlaylistDeleteModalShow(!playlistDeleteModalShow)
+  }
+
   return (
     <Layout noTopPadding={true}>
         <div className='xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center w-full py-4'>
@@ -58,7 +68,7 @@ const CreatePlaylist = () => {
                 <div className='w-full md:w-2/3 xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-col sm:flex sm:flex-col items-center justify-end'>
                       <button onClick={() => navigate('/dashboard/PlaylistPreview')} className='bg-black text-white font-medium w-[120px] h-[60px] flex flex-row items-center justify-center rounded'>Prview <IoMdEye className='ms-2'/></button>
 
-                      <button className='bg-red-500 mx-4 text-white font-medium w-[120px] h-[60px] flex flex-row items-center justify-center rounded'>Delete <MdDelete className='ms-2'/></button>
+                      <button onClick={() => setPlaylistDeleteModalShow(true)} className='bg-red-500 mx-4 text-white font-medium w-[120px] h-[60px] flex flex-row items-center justify-center rounded'>Delete <MdDelete className='ms-2'/></button>
 
                       <button className='side_bar_style text-white font-medium w-[120px] h-[60px] flex flex-row items-center justify-center rounded'>Publish <MdDone className='ms-2'/></button>
                 </div>
@@ -119,7 +129,7 @@ const CreatePlaylist = () => {
                     <div className='flex flex-row justify-between items-center p-2'>
                           <p className='font-bold'>Library {`>`} All </p>
                           
-                          <button className='bg-white px-4 py-2 rounded text-[20px] font-bold'><FaPlus/></button>
+                          <button onClick={() => setShowMediaUploadModal(true)} className='bg-white px-4 py-2 rounded text-[20px] font-bold'><FaPlus/></button>
                     </div>
 
                     {
@@ -172,6 +182,22 @@ const CreatePlaylist = () => {
             </div>
 
         </div>
+        {
+           showMediaUploadModal && <MediaUploadModal
+            onClose={toggleUploadModal}
+            visible={showMediaUploadModal}
+            />
+          }
+          {
+            playlistDeleteModalShow && (
+                <ConfirmationModal
+                onClose={toggleDeleteModal}
+                visible={playlistDeleteModalShow}
+                mainTitle={'Move to Trash?'}
+                infoTitle={'Birthday Whishses playlist will be deleted and moved to the Trash.'}
+                />
+            )
+          }
     </Layout>
   )
 }
