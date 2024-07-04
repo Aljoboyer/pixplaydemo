@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import ConfirmationModal from '../../../components/common/Modals/ConfirmationModal';
 import PlaylistSearchHeader from '../../../components/admin/Studio/PlaylistSearchHeader';
 import ScreenSearchHeader from '../../../components/admin/Studio/ScreenSearchHeader';
+import SreenLists from '../../../components/admin/Studio/SreenLists';
 
 const Studio = () => {
   const navigate = useNavigate()
@@ -39,10 +40,9 @@ const Studio = () => {
         {
           currentTab == 'Playlist' && <PlylistTable playlistDeleteHandler={playlistDeleteHandler} />
         }
+        
         {
-          currentTab == 'Screen' && <div className='z-0 min-h-screen'>
-            <h1 className='font-bold text-5xl'>Coming Soon.....</h1>
-          </div>
+          currentTab == 'Screen' && <SreenLists/>
         }
 
         <BottomTab
