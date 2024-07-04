@@ -28,7 +28,7 @@ const ScreenSearchHeader = () => {
         
             <div className='w-full md:w-2/3 flex flex-row justify-start items-center'>
                 <GoPlusCircle size={22} />
-                <p className='text-xl  font-bold ms-2'>Create Group</p>
+                <p className='text-xl  font-bold ms-2 cursor-pointer'>Create Group</p>
              </div>
             
           <div className='w-full md:w-1/2 lg:w-[200px]'>
