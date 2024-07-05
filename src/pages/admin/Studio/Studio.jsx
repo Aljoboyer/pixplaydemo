@@ -7,12 +7,14 @@ import ConfirmationModal from '../../../components/common/Modals/ConfirmationMod
 import PlaylistSearchHeader from '../../../components/admin/Studio/PlaylistSearchHeader';
 import ScreenSearchHeader from '../../../components/admin/Studio/ScreenSearchHeader';
 import SreenLists from '../../../components/admin/Studio/SreenLists';
+import ScreenCreateModal from '../../../components/admin/Studio/ScreenCreateModal';
 
 const Studio = () => {
   const navigate = useNavigate()
   const tabData = ['Playlist', 'Screen', 'Channel',]
   const [currentTab, setCurrentTab] = useState('')
   const [playlistDeleteModalShow, setPlaylistDeleteModalShow] = useState(false)
+  const [createScreenModal, setCreateScreenModal] = useState(false);
 
   useEffect(() => {
     setCurrentTab('Playlist')
@@ -30,12 +32,15 @@ const Studio = () => {
     toggleDeleteModal()
   }
 
+  const toggleCreateScreenModal = () => {
+    setCreateScreenModal(!createScreenModal)
+  }
 
   return (
     <Layout noTopPadding={true}>
        { currentTab == 'Playlist' && <PlaylistSearchHeader/>}
         
-        {currentTab == 'Screen' && <ScreenSearchHeader/>}
+        {currentTab == 'Screen' && <ScreenSearchHeader createScreenHandler={toggleCreateScreenModal} />}
 
         {
           currentTab == 'Playlist' && <PlylistTable playlistDeleteHandler={playlistDeleteHandler} />
@@ -51,7 +56,7 @@ const Studio = () => {
           tabData={tabData}
         />
 
-        {
+          {
             playlistDeleteModalShow && (
                 <ConfirmationModal
                 onClose={toggleDeleteModal}
@@ -62,6 +67,12 @@ const Studio = () => {
             )
           }
 
+          {
+            <ScreenCreateModal
+                onClose={toggleCreateScreenModal}
+                visible={createScreenModal}
+            />
+          }
     </Layout>
   )
 }

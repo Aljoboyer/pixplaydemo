@@ -2,7 +2,7 @@ import React from 'react'
 import { IoSearch } from "react-icons/io5";
 import { GoPlusCircle } from "react-icons/go";
 
-const ScreenSearchHeader = () => {
+const ScreenSearchHeader = ({createScreenHandler}) => {
 
   return (
     <div className='w-full  sticky top-16 z-999 bg-white  h-[180px] px-4 py-4'>
@@ -32,7 +32,7 @@ const ScreenSearchHeader = () => {
              </div>
             
           <div className='w-full md:w-1/2 lg:w-[200px]'>
-                <button  className='px-2 py-2 bg-[#015FDF] text-white font-bold rounded-md text-sm md:text-base lg:text-lg w-full mt-4 md:mt-4 lg:mt-0 cursor-pointer'>+ New Screen</button>
+                <button onClick={createScreenHandler}  className='px-2 py-2 bg-[#015FDF] text-white font-bold rounded-md text-sm md:text-base lg:text-lg w-full mt-4 md:mt-4 lg:mt-0 cursor-pointer'>+ New Screen</button>
             </div>
         </div>
       
