@@ -2,7 +2,7 @@ import React from 'react'
 import { IoSearch } from "react-icons/io5";
 import { GoPlusCircle } from "react-icons/go";
 
-const ScreenSearchHeader = ({createScreenHandler}) => {
+const ScreenSearchHeader = ({createScreenHandler, createGroupHandler}) => {
 
   return (
     <div className='w-full  sticky top-16 z-999 bg-white  h-[180px] px-4 py-4'>
@@ -23,12 +23,11 @@ const ScreenSearchHeader = ({createScreenHandler}) => {
               </div>
           </div>
 
-          
         <div className='flex flex-row justify-between items-center mt-4 bg-[#f6f8fb] p-4 rounded-md'>
         
             <div className='w-full md:w-2/3 flex flex-row justify-start items-center'>
                 <GoPlusCircle size={22} />
-                <p className='text-xl  font-bold ms-2 cursor-pointer'>Create Group</p>
+                <p onClick={createGroupHandler} className='text-xl  font-bold ms-2 cursor-pointer'>Create Group</p>
              </div>
             
           <div className='w-full md:w-1/2 lg:w-[200px]'>
@@ -36,7 +35,7 @@ const ScreenSearchHeader = ({createScreenHandler}) => {
             </div>
         </div>
       
-        </div>
+    </div>
   )
 }
 
