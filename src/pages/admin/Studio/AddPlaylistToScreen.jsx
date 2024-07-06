@@ -10,6 +10,8 @@ import { TbSettings2 } from "react-icons/tb";
 import { FaQrcode } from "react-icons/fa";
 import { IoLogoAndroid } from "react-icons/io5";
 import { LuCopy } from "react-icons/lu";
+import { CiPlay1 } from "react-icons/ci";
+import { GoTag } from "react-icons/go";
 
 const AddPlaylistToScreen = ({}) => {
   const [mediaNameEdit, setMediaNameEdit] = useState(false)
@@ -23,13 +25,19 @@ const AddPlaylistToScreen = ({}) => {
   return (
     <Layout noTopPadding={true}>
         <div className='xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center w-full mt-4 py-4'>
-            <div className='flex flex-row items-center w-full md:w-1/3'>
-                <FaRegArrowAltCircleLeft onClick={() => navigate(-1)} size={28} />
-                {
-                    mediaNameEdit ? <input className='outline-none border-b-2 border-gray-300 px-2 py-2 text-base font-bold md:text-2xl' defaultValue="Reception Main" />  : <h1 className='text-xl font-bold md:text-2xl ms-2'>Reception Main</h1>
-                }
-                <div onClick={() => setMediaNameEdit(!mediaNameEdit)} className='w-fit cursor-pointer px-2'>
-                        {!mediaNameEdit ? <HiPencil size={20}/> :  <MdDone size={24}/> }
+            <div className='w-full md:w-1/3'>
+                <div className='flex flex-row items-center '>
+                    <FaRegArrowAltCircleLeft onClick={() => navigate(-1)} size={28} />
+                    {
+                        mediaNameEdit ? <input className='outline-none border-b-2 border-gray-300 px-2 py-2 text-base font-bold md:text-2xl' defaultValue="Reception Main" />  : <h1 className='text-xl font-bold md:text-2xl ms-2'>Reception Main</h1>
+                    }
+                    <div onClick={() => setMediaNameEdit(!mediaNameEdit)} className='w-fit cursor-pointer px-2'>
+                            {!mediaNameEdit ? <HiPencil size={20}/> :  <MdDone size={24}/> }
+                    </div>
+                </div>
+                <div className='flex justify-start items-center mt-2 ms-0 md:ms-4'>
+                    <GoTag size={14} />
+                    <p className='text-gray-600 text-[12px] ms-2'>Bangalore Main+</p>
                 </div>
             </div>
 
@@ -49,7 +57,25 @@ const AddPlaylistToScreen = ({}) => {
        
         <div className='xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-col sm:flex sm:flex-col items-start w-full mt-7 py-4'>
             <div className='w-3/5 px-4'>
-                
+                <div className='flex flex-row justify-between items-center bg-gray-50 p-2 rounded'>
+                    <div className='flex items-center'>
+                        <CiPlay1 size={20}/>
+                        <span className='underline ms-2 text-[18px]'>Birthday Whishes</span>
+                    </div>
+
+                    <div className='flex items-center justify-center p-2 bg-gray-100 rounded-md'>
+                        <p className='text-[18px]'>3 Playlists</p>
+                        <CiPlay1 className='ms-2' size={20}/>
+                    </div>
+
+                    <div className='flex items-center'>
+                        <p className="text-[18px] mr-2">Update</p>
+                        <select  className='border border-1 border-gray-600 p-2 rounded-md mt-2'>
+                            <option value="Sync">Sync</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div className='flex justify-center'>
                      <img src={AddPlaylistLogo} alt="" />
                 </div>
