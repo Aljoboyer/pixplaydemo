@@ -1,8 +1,10 @@
 import React from 'react'
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 
 const PlaylistSearchHeader = () => {
+    const navigate = useNavigate()
   return (
     <div className='w-full  sticky top-16 z-999 bg-white  h-[180px] px-4 py-4'>
           <div className='xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center w-full'>

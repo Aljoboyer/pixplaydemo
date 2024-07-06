@@ -13,6 +13,7 @@ import ForgotPassword from './pages/common/Auth/ForgotPassword/ForgotPassword';
 import PlaylistPreview from './components/admin/Studio/PlaylistPreview';
 import PlaylistCreateOptions from './pages/admin/Studio/PlaylistCreateOptions';
 import CreatePlaylist from './pages/admin/Studio/CreatePlaylist';
+import AddPlaylistToScreen from './pages/admin/Studio/AddPlaylistToScreen';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/dashboard/PlaylistPreview" element={<PlaylistPreview />} />
           <Route path="/dashboard/PlaylistCreateOptions" element={<PlaylistCreateOptions />} />
           <Route path="/dashboard/CreatePlaylist" element={<CreatePlaylist />} />
+          <Route path="/dashboard/AddPlaylistToScreen" element={<AddPlaylistToScreen />} />
         </Routes>
       </Router>
     </main>

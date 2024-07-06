@@ -95,3 +95,7 @@
   .playlist_format_options{
     background-color: #629ae87c;
   }
+
+  .qr_code_div{
+    background-image: linear-gradient(to bottom , hsl(0, 0%, 100%), #00000053,  #000000c7 );
+}

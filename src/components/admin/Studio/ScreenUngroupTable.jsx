@@ -2,8 +2,11 @@ import React from 'react'
 import { GrAndroid } from "react-icons/gr";
 import { CiPlay1 } from "react-icons/ci";
 import { GoPlusCircle } from "react-icons/go";
+import { useNavigate } from 'react-router-dom';
 
 const ScreenUngroupTable = () => {
+    const navigate = useNavigate();
+
   return (
     <div>
          <div className='w-full overflow-y-visible overflow-x-auto  mt-4 bg-white p-4 rounded'>
@@ -31,7 +34,7 @@ const ScreenUngroupTable = () => {
                         <td className=' text-start py-2 font-medium flex items-center md:w-[300px]'>
                             {
                                 item == 1 ? <><GoPlusCircle size={20} className='text-blue-600' />
-                            <span className='underline ms-2 text-blue-600'>Add Playlist</span></> : <><CiPlay1/>
+                            <span onClick={() => navigate('/dashboard/AddPlaylistToScreen')} className='underline ms-2 text-blue-600'>Add Playlist</span></> : <><CiPlay1/>
                             <span className='underline ms-2'>Birthday Whishes</span></>
                             }
                         </td>
