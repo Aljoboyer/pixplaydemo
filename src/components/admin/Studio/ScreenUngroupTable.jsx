@@ -34,7 +34,9 @@ const ScreenUngroupTable = () => {
                         <td className=' text-start py-2 font-medium flex items-center md:w-[300px]'>
                             {
                                 item == 1 ? <><GoPlusCircle size={20} className='text-blue-600' />
-                            <span onClick={() => navigate('/dashboard/AddPlaylistToScreen')} className='underline ms-2 text-blue-600'>Add Playlist</span></> : <><CiPlay1/>
+                            <span 
+                            // onClick={() => navigate('/dashboard/AddPlaylistToScreen')}
+                             className='underline ms-2 text-blue-600'>Add Playlist</span></> : <><CiPlay1/>
                             <span className='underline ms-2'>Birthday Whishes</span></>
                             }
                         </td>
