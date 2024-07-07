@@ -3,8 +3,15 @@ import { GrAndroid } from "react-icons/gr";
 import { CiPlay1 } from "react-icons/ci";
 import { GoPlusCircle } from "react-icons/go";
 import { RxDragHandleHorizontal } from "react-icons/rx";
+import DropDownMenu from '../../common/DropDownManu/DropDownManu';
 
-const ScreenGroupTable = ({toggleAddScreenModal}) => {
+const ScreenGroupTable = ({toggleAddScreenModal, toggleChangeGroupModal}) => {
+
+    const handleDropDownClick = (action) => {
+        if(action == "changeGroup"){
+            toggleChangeGroupModal()
+        }
+    }
   return (
     <div className='mt-4 p-4'>
         <div className='flex justify-start items-center'>
@@ -24,6 +31,7 @@ const ScreenGroupTable = ({toggleAddScreenModal}) => {
                         <th className="px-6 lg:px-0 text-start  py-2 font-medium text-[12px]">Name</th>
                         <th className="px-6 lg:px-0 text-start  py-2 font-medium text-[12px]">Playlist</th>
                         <th className="px-6 lg:px-0 text-start  py-2 font-medium text-[12px]">Status</th>
+                        <th className="px-6 lg:px-0 text-start  py-2 font-medium text-[12px]"></th>
                         <th className="px-6 lg:px-0 text-start  py-2 font-medium text-[12px]"></th>
                     </tr>
                 </thead>
@@ -51,6 +59,9 @@ const ScreenGroupTable = ({toggleAddScreenModal}) => {
                         </td>
                         <td className='text-start py-4'>
                             <span className='bg-blue-500 p-2 rounded-full font-medium text-white text-[12px]'>Published</span>
+                        </td>
+                        <td className='text-start py-4'>
+                            <DropDownMenu from="screenGroupTable" handleDropDownClick={handleDropDownClick}/>
                         </td>
                      </tr>
                         ))

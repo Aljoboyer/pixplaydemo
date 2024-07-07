@@ -5,7 +5,7 @@ import { GoPlusCircle } from "react-icons/go";
 const ScreenSearchHeader = ({createScreenHandler, createGroupHandler}) => {
 
   return (
-    <div className='w-full  sticky top-16 z-999 bg-white  h-[180px] px-4 py-4'>
+    <div className='w-full  sticky top-16 z-10 bg-white  h-[180px] px-4 py-4'>
           <div className='xl:flex xl:flex-row lg:flex lg:flex-row  md:flex md:flex-row sm:flex sm:flex-col items-center w-full'>
               <div className='w-full md:w-2/3 flex flex-row justify-start items-center'>
                  
