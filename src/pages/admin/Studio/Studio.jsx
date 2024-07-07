@@ -9,6 +9,7 @@ import ScreenSearchHeader from '../../../components/admin/Studio/ScreenSearchHea
 import SreenLists from '../../../components/admin/Studio/SreenLists';
 import ScreenCreateModal from '../../../components/admin/Studio/ScreenCreateModal';
 import CreateGroupModal from '../../../components/admin/Studio/CreateGroupModal';
+import AddScreenToGroupModal from '../../../components/admin/Studio/AddScreenToGroupModal';
 
 const Studio = () => {
   const navigate = useNavigate()
@@ -17,6 +18,7 @@ const Studio = () => {
   const [playlistDeleteModalShow, setPlaylistDeleteModalShow] = useState(false)
   const [createScreenModal, setCreateScreenModal] = useState(false);
   const [createGroupModal, setCreateGroupModal] = useState(false);
+  const [addScreenModal, setAddScreenModal] = useState(false);
 
   useEffect(() => {
     setCurrentTab('Playlist')
@@ -42,6 +44,10 @@ const Studio = () => {
     setCreateGroupModal(!createGroupModal)
   }
 
+  const toggleAddScreenModal = () => {
+    setAddScreenModal(!addScreenModal)
+  }
+
   return (
     <Layout noTopPadding={true}>
        { currentTab == 'Playlist' && <PlaylistSearchHeader/>}
@@ -53,7 +59,7 @@ const Studio = () => {
         }
         
         {
-          currentTab == 'Screen' && <SreenLists/>
+          currentTab == 'Screen' && <SreenLists toggleAddScreenModal={toggleAddScreenModal}/>
         }
 
         <BottomTab
@@ -84,6 +90,13 @@ const Studio = () => {
             <CreateGroupModal
                 onClose={toggleCreateGroupModal}
                 visible={createGroupModal}
+            />
+          }
+
+          {
+            <AddScreenToGroupModal
+              onClose={toggleAddScreenModal}
+              visible={addScreenModal}
             />
           }
     </Layout>

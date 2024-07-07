@@ -4,12 +4,17 @@ import { CiPlay1 } from "react-icons/ci";
 import { GoPlusCircle } from "react-icons/go";
 import { RxDragHandleHorizontal } from "react-icons/rx";
 
-const ScreenGroupTable = () => {
+const ScreenGroupTable = ({toggleAddScreenModal}) => {
   return (
     <div className='mt-4 p-4'>
         <div className='flex justify-start items-center'>
             <p className='bg-black text-white px-4 py-2 font-medium rounded-md'>Fare Court   2</p>
             <RxDragHandleHorizontal size={24} className='ms-2 cursor-pointer'/>
+            <div className='flex justify-center items-center ms-4'>
+                <GoPlusCircle size={20} className='text-blue-600' />
+                <p onClick={toggleAddScreenModal} className='underline text-blue-600 cursor-pointer font-medium ms-2'>Add Screen</p>
+            </div>
+            
         </div>
          <div className='w-full overflow-y-visible overflow-x-auto  bg-white rounded'>
             <table className="w-full  table-auto overflow-visible mx-auto bg-gray-50 mt-4">

@@ -20,32 +20,46 @@ const ScreenUngroupTable = () => {
                             <th className="px-6 lg:px-0 text-start  py-2 font-medium text-[12px]">Playlist</th>
                             <th className="px-6 lg:px-0 text-start  py-2 font-medium text-[12px]">Status</th>
                             <th className="px-6 lg:px-0 text-start  py-2 font-medium text-[12px]"></th>
+                            <th className="px-6 lg:px-0 text-start  py-2 font-medium text-[12px]"></th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr className=' cursor-pointer '>
-                        <td className='ps-2  py-2 md:w-[100px]'>
-                        <GrAndroid size={24} color='#a9c147' />
-                        </td>
-                        <td className=' text-start py-2 font-medium md:w-[280px]'>
-                            <p className='font-bold'>Reception Main</p>
-                        </td>
-                        <td className=' text-start py-2 font-medium flex items-center md:w-[300px]'>
-                            {
-                                item == 1 ? <><GoPlusCircle size={20} className='text-blue-600' />
-                            <span 
-                            // onClick={() => navigate('/dashboard/AddPlaylistToScreen')}
-                             className='underline ms-2 text-blue-600'>Add Playlist</span></> : <><CiPlay1/>
-                            <span className='underline ms-2'>Birthday Whishes</span></>
-                            }
-                        </td>
-                        
+                            <td className='ps-2  py-2 md:w-[100px]'>
+                            <GrAndroid size={24} color='#a9c147' />
+                            </td>
+                            <td className=' text-start py-2 font-medium md:w-[280px]'>
+                                <p className='font-bold'>Reception Main</p>
+                            </td>
+                            <td className=' text-start py-2 font-medium flex items-center md:w-[300px]'>
+                                {
+                                    item == 1 ? <><GoPlusCircle size={20} className='text-blue-600' />
+                                <span 
+                                onClick={() => navigate('/dashboard/AddPlaylistToScreen')}
+                                className='underline ms-2 text-blue-600'>Add Playlist</span></> : <><CiPlay1/>
+                                <span className='underline ms-2'>Birthday Whishes</span></>
+                                }
+                            </td>
+                            
                             <td className='lg:px-0 text-start py-4 '>
                                 <span className='bg-green-500 p-2 rounded-full font-medium text-white text-[12px]'>Online</span>
                             </td>
                             <td className='text-start py-4'>
                                 <span className='bg-blue-500 p-2 rounded-full font-medium text-white text-[12px]'>Published</span>
+                            </td>
+                            <td className='py-0'>
+                                <select  className='border border-1 border-gray-600 p-2 rounded-md '>
+                                    <option value="All">Add To Group</option>
+                                    <option value="Landscape">Group A</option>
+                                    <option value="Potrait">Group B</option>
+                                    <option value="Landscape">Group A</option>
+                                    <option value="Potrait">Group B</option>
+                                    <option value="Landscape">Group A</option>
+                                    <option value="Potrait">Group B</option>
+                                    <option value="Landscape">Group A</option>
+                                    <option value="Potrait">Group B</option>
+                                </select>
                             </td>
                         </tr>
                     </tbody>

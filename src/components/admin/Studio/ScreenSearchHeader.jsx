@@ -10,7 +10,7 @@ const ScreenSearchHeader = ({createScreenHandler, createGroupHandler}) => {
               <div className='w-full md:w-2/3 flex flex-row justify-start items-center'>
                  
                   <p className='text-xl  font-bold md:text-3xl lg:text-5xl ms-2'>
-                  Sreen</p>
+                  Screen</p>
               </div>
               <div className='flex flex-row items-center justify-between border border-2 border-gray-300 w-full md:w-1/3 mt-4 md:mt-0 mx-auto rounded-md'>
                   <div className='flex flex-row items-center justify-start'>
