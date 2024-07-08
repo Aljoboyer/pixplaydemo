@@ -12,14 +12,20 @@ import { IoLogoAndroid } from "react-icons/io5";
 import { LuCopy } from "react-icons/lu";
 import { CiPlay1 } from "react-icons/ci";
 import { GoTag } from "react-icons/go";
+import AddPlaylistToScreenModal from '../../../components/admin/Studio/AddPlaylistToScreenModal';
 
 const AddPlaylistToScreen = ({}) => {
   const [mediaNameEdit, setMediaNameEdit] = useState(false)
   const navigate = useNavigate()
   const [playlistDeleteModalShow, setPlaylistDeleteModalShow] = useState(false)
+  const [addPlaylistModalShow, setAddPlaylistModalShow] = useState(false)
   
   const toggleDeleteModal = () => {
     setPlaylistDeleteModalShow(!playlistDeleteModalShow)
+  }
+
+  const toggleAddPlayistModal = () => {
+    setAddPlaylistModalShow(!addPlaylistModalShow)
   }
 
   return (
@@ -80,7 +86,7 @@ const AddPlaylistToScreen = ({}) => {
                      <img src={AddPlaylistLogo} alt="" />
                 </div>
                 <div className='flex justify-center'>
-                    <button className='text-center w-[250px] py-4 side_bar_style text-white font-bold text-lg my-4  rounded'>+ Add Playlist</button>
+                    <button onClick={toggleAddPlayistModal} className='text-center w-[250px] py-4 side_bar_style text-white font-bold text-lg my-4  rounded'>+ Add Playlist</button>
                 </div>
             </div>
 
@@ -176,6 +182,12 @@ const AddPlaylistToScreen = ({}) => {
                 />
             )
           }
+        {
+            <AddPlaylistToScreenModal
+            onClose={toggleAddPlayistModal}
+            visible={addPlaylistModalShow}
+            />
+        }
     </Layout>
   )
 }

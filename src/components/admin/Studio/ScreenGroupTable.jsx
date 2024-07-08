@@ -4,8 +4,10 @@ import { CiPlay1 } from "react-icons/ci";
 import { GoPlusCircle } from "react-icons/go";
 import { RxDragHandleHorizontal } from "react-icons/rx";
 import DropDownMenu from '../../common/DropDownManu/DropDownManu';
+import { useNavigate } from 'react-router-dom';
 
 const ScreenGroupTable = ({toggleAddScreenModal, toggleChangeGroupModal}) => {
+    const navigate = useNavigate();
 
     const handleDropDownClick = (action) => {
         if(action == "changeGroup"){
@@ -49,7 +51,7 @@ const ScreenGroupTable = ({toggleAddScreenModal, toggleChangeGroupModal}) => {
                         <td className=' text-start py-2 font-medium flex items-center md:w-[300px]'>
                             {
                                 item == 1 ? <><GoPlusCircle size={20} className='text-blue-600' />
-                            <span className='underline ms-2 text-blue-600'>Add Playlist</span></> : <><CiPlay1/>
+                            <span onClick={() => navigate('/dashboard/AddPlaylistToScreen')} className='underline ms-2 text-blue-600'>Add Playlist</span></> : <><CiPlay1/>
                             <span className='underline ms-2'>Birthday Whishes</span></>
                             }
                         </td>
