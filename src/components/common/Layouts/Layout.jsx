@@ -17,12 +17,12 @@ const Layout = ({ children , noTopPadding = false}) => {
 	const location = useLocation();
 	const { pathname } = location;
 	const dispatch = useDispatch()
-	useEffect(() => {
-		const token = localStorage.getItem('pixplayToken')
-		if(!token){
-			navigate('/login')
-		}
-	  }, []);
+	// useEffect(() => {
+	// 	const token = localStorage.getItem('pixplayToken')
+	// 	if(!token){
+	// 		navigate('/login')
+	// 	}
+	//   }, []);
 
 	// console.log('Pathname =', pathname)
 
